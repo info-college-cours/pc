@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les exercices — Informatique</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a>
+  <a class="back-link" href="index.html">← Accueil</a>
+</header>
+<main class="container page">
+  <div class="page-heading">
+    <p class="eyebrow">📝 Exercices</p>
+    <h1>Entraînement — Leçon 01</h1>
+    <p>Répondre aux questions puis vérifier les réponses.</p>
+  </div>
+
+  <form id="quiz" class="quiz">
+    <section class="question">
+      <span class="question-number">1</span>
+      <div>
+        <h2>L'informatique est :</h2>
+        <label><input type="radio" name="q1" value="a"> une machine</label>
+        <label><input type="radio" name="q1" value="b"> une science qui étudie le traitement des informations à l'aide de machines automatiques</label>
+        <label><input type="radio" name="q1" value="c"> uniquement un logiciel</label>
+      </div>
+    </section>
+
+    <section class="question">
+      <span class="question-number">2</span>
+      <div>
+        <h2>Le clavier est un périphérique :</h2>
+        <label><input type="radio" name="q2" value="a"> d'entrée</label>
+        <label><input type="radio" name="q2" value="b"> de sortie</label>
+        <label><input type="radio" name="q2" value="c"> de stockage</label>
+      </div>
+    </section>
+
+    <section class="question">
+      <span class="question-number">3</span>
+      <div>
+        <h2>Quel élément est un périphérique de stockage ?</h2>
+        <label><input type="radio" name="q3" value="a"> Écran</label>
+        <label><input type="radio" name="q3" value="b"> USB</label>
+        <label><input type="radio" name="q3" value="c"> Clavier</label>
+      </div>
+    </section>
+
+    <section class="question">
+      <span class="question-number">4</span>
+      <div>
+        <h2>Windows est principalement :</h2>
+        <label><input type="radio" name="q4" value="a"> un logiciel système</label>
+        <label><input type="radio" name="q4" value="b"> un périphérique</label>
+        <label><input type="radio" name="q4" value="c"> une donnée</label>
+      </div>
+    </section>
+
+    <section class="question">
+      <span class="question-number">5</span>
+      <div>
+        <h2>Word et PowerPoint sont :</h2>
+        <label><input type="radio" name="q5" value="a"> des périphériques d'entrée</label>
+        <label><input type="radio" name="q5" value="b"> des logiciels d'application</label>
+        <label><input type="radio" name="q5" value="c"> des systèmes informatiques</label>
+      </div>
+    </section>
+
+    <button class="button primary" type="submit">Vérifier mes réponses</button>
+    <div id="quizResult" class="quiz-result" hidden></div>
+  </form>
+</main>
+<footer class="footer">© 2026 — Espace Informatique</footer>
+<script src="js/app.js"></script>
+<script>
+document.getElementById("quiz").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const answers = {q1:"b", q2:"a", q3:"b", q4:"a", q5:"b"};
+  let score = 0;
+  Object.entries(answers).forEach(([q, answer]) => {
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    if (selected && selected.value === answer) score++;
+  });
+  const box = document.getElementById("quizResult");
+  box.hidden = false;
+  box.innerHTML = `<strong>${score}/5</strong><span>${score === 5 ? "Excellent ! Toutes les réponses sont correctes." : "Relisez la leçon et essayez encore."}</span>`;
+  box.className = "quiz-result " + (score === 5 ? "success" : "partial");
+});
+</script>
+</body>
+</html>

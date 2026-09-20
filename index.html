@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informatique — Espace pédagogique</title>
+  <meta name="description" content="Plateforme pédagogique d'informatique : cours, exercices et groupes.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">💻</span>
+      <span>Informatique</span>
+    </a>
+    <span class="school-label">Espace pédagogique</span>
+  </header>
+
+  <main class="container home">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Bienvenue</p>
+        <h1>Apprendre l'informatique<br><span>simplement et efficacement</span></h1>
+        <p class="hero-text">Les cours et les exercices sont communs à toutes les classes. La rubrique « Groupes » sert uniquement à connaître le groupe qui a cours.</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🎓</div>
+        <strong>11 classes</strong>
+        <span>Groupe 1 · Groupe 2</span>
+      </div>
+    </section>
+
+    <section class="main-actions" aria-label="Navigation principale">
+      <a class="action-card courses" href="lessons.html">
+        <span class="action-icon">📚</span>
+        <span class="action-title">Les cours</span>
+        <span class="action-desc">Consulter les leçons</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="action-card exercises" href="exercises.html">
+        <span class="action-icon">📝</span>
+        <span class="action-title">Les exercices</span>
+        <span class="action-desc">S'entraîner et vérifier ses réponses</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="action-card groups" href="groups.html">
+        <span class="action-icon">👥</span>
+        <span class="action-title">Les groupes</span>
+        <span class="action-desc">Voir le groupe qui a cours</span>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+    <section class="today-box">
+      <div>
+        <p class="eyebrow">Aujourd'hui</p>
+        <h2 id="todayTitle">Programme du jour</h2>
+      </div>
+      <div id="todaySchedule" class="today-result"></div>
+    </section>
+  </main>
+
+  <footer class="footer">© 2026 — Espace Informatique</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
