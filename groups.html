@@ -27,106 +27,20 @@
         <h2>📅 Lundi → Samedi</h2>
         <p>Pour chaque jour : choisir la classe « الثالثة 1 » à « الثالثة 11 » et le groupe 1 ou 2.</p>
       </div>
-      <button id="editBtn" class="button secondary">⚙️ Modifier</button>
+      <button id="editBtn" type="button" class="button secondary">⚙️ Modifier</button>
     </div>
 
     <div id="scheduleView" class="schedule-view"></div>
 
-    <div id="scheduleEditor" class="schedule-editor" hidden>
+    <div id="scheduleEditor" class="schedule-editor is-hidden">
       <div class="editor-note">Les changements sont enregistrés dans ce navigateur. Aucun compte ni serveur n'est nécessaire pour cette version.</div>
       <div id="editorRows"></div>
-      <button id="saveBtn" class="button primary">💾 Enregistrer le programme</button>
+      <button id="saveBtn" type="button" class="button primary">💾 Enregistrer le programme</button>
     </div>
   </section>
 </main>
 
 <footer class="footer">© 2026 — Espace Informatique</footer>
 <script src="js/app.js"></script>
-<script>
-const DAYS = [
-  {key:"monday", label:"Lundi"},
-  {key:"tuesday", label:"Mardi"},
-  {key:"wednesday", label:"Mercredi"},
-  {key:"thursday", label:"Jeudi"},
-  {key:"friday", label:"Vendredi"},
-  {key:"saturday", label:"Samedi"}
-];
-
-const CLASSES = Array.from({length: 11}, (_, i) => `الثالثة ${i + 1}`);
-const defaultSchedule = {
-  monday: {className:"الثالثة 1", group:"1"},
-  tuesday: {className:"الثالثة 2", group:"2"},
-  wednesday: {className:"الثالثة 3", group:"1"},
-  thursday: {className:"الثالثة 4", group:"2"},
-  friday: {className:"الثالثة 5", group:"1"},
-  saturday: {className:"الثالثة 6", group:"2"}
-};
-
-let schedule = JSON.parse(localStorage.getItem("informatiqueSchedule") || "null") || defaultSchedule;
-
-function renderSchedule() {
-  const view = document.getElementById("scheduleView");
-  view.innerHTML = DAYS.map((day, index) => {
-    const item = schedule[day.key];
-    return `<div class="schedule-row ${isToday(index) ? "is-today" : ""}">
-      <div class="day">${day.label}${isToday(index) ? '<span class="today-dot">Aujourd’hui</span>' : ""}</div>
-      <div class="class-name">${item.className}</div>
-      <div class="group-pill">Groupe ${item.group}</div>
-    </div>`;
-  }).join("");
-
-  const todayIndex = new Date().getDay() - 1;
-  const banner = document.getElementById("todayBanner");
-  if (todayIndex >= 0 && todayIndex <= 5) {
-    const today = DAYS[todayIndex];
-    const item = schedule[today.key];
-    banner.innerHTML = `<span class="pulse"></span><div><small>AUJOURD'HUI · ${today.label}</small><strong>${item.className} — Groupe ${item.group}</strong></div>`;
-  } else {
-    banner.innerHTML = `<span>📅</span><div><small>WEEK-END</small><strong>Le programme reprend lundi.</strong></div>`;
-  }
-}
-
-function isToday(index) {
-  return new Date().getDay() - 1 === index;
-}
-
-function renderEditor() {
-  document.getElementById("editorRows").innerHTML = DAYS.map(day => {
-    const item = schedule[day.key];
-    return `<div class="edit-row">
-      <label><strong>${day.label}</strong>
-        <select data-day="${day.key}" data-field="className">
-          ${CLASSES.map(c => `<option value="${c}" ${c === item.className ? "selected" : ""}>${c}</option>`).join("")}
-        </select>
-      </label>
-      <label><strong>Groupe</strong>
-        <select data-day="${day.key}" data-field="group">
-          <option value="1" ${item.group === "1" ? "selected" : ""}>Groupe 1</option>
-          <option value="2" ${item.group === "2" ? "selected" : ""}>Groupe 2</option>
-        </select>
-      </label>
-    </div>`;
-  }).join("");
-}
-
-document.getElementById("editBtn").addEventListener("click", () => {
-  const editor = document.getElementById("scheduleEditor");
-  editor.hidden = !editor.hidden;
-  if (!editor.hidden) renderEditor();
-});
-
-document.getElementById("saveBtn").addEventListener("click", () => {
-  document.querySelectorAll("select[data-day]").forEach(select => {
-    const day = select.dataset.day;
-    const field = select.dataset.field;
-    schedule[day][field] = select.value;
-  });
-  localStorage.setItem("informatiqueSchedule", JSON.stringify(schedule));
-  renderSchedule();
-  document.getElementById("scheduleEditor").hidden = true;
-});
-
-renderSchedule();
-</script>
 </body>
 </html>
