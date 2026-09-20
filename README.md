@@ -42,3 +42,6 @@ Le bouton « Modifier » de la page Groupes enregistre les changements dans le n
 ## Remarque
 
 La programmation des groupes est stockée localement dans le navigateur dans cette version. Si plusieurs appareils doivent voir automatiquement les mêmes changements, une petite base de données ou un service externe sera nécessaire dans une future version.
+
+## Programme des groupes — règle actuelle
+Chaque classe (الثالثة 1 à الثالثة 11) possède deux groupes : Groupe 1 et Groupe 2. Le programme permet deux classes par jour, sauf le vendredi où une seule classe est affichée. Le tableau est enregistré localement dans le navigateur.
