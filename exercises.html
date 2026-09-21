@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Les exercices — Informatique</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .exercise-image{width:100%;max-width:900px;display:block;margin:14px auto 18px;border-radius:16px;border:1px solid #dbe3ee;background:#fff}
+    .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+    .choice-grid label{background:#f7f9fc;border:1px solid #e3e9f2;border-radius:10px;padding:10px 12px}
+    .feedback{margin-top:10px;font-size:14px;font-weight:700}
+    .quiz-result{margin-top:16px}
+    select.quiz-select{width:100%;max-width:420px;padding:10px;border:1px solid #dbe3ee;border-radius:10px;background:#fff}
+    .tip{background:#eef6ff;border-left:4px solid #2563eb;padding:12px 14px;border-radius:10px;margin:0 0 16px}
+  </style>
 </head>
 <body>
 <header class="topbar">
@@ -13,99 +22,71 @@
 </header>
 <main class="container page">
   <div class="page-heading">
-    <p class="eyebrow">📝 Exercices</p>
-    <h1>Entraînement — Leçon 01</h1>
-    <p>15 exercices variés sur « Généralités informatiques ». Répondre puis cliquer sur « Corriger ».</p>
+    <p class="eyebrow">📝 Exercices interactifs</p>
+    <h1>Entraînement — Généralités informatiques</h1>
+    <p>20 activités variées : choix, vrai/faux, images et identification des composants de l’unité centrale.</p>
   </div>
+  <div class="tip">💡 Observe bien les images avant de répondre. À la fin, clique sur <strong>Corriger</strong> pour obtenir ta note.</div>
 
   <form id="quiz" class="quiz">
     <section class="question"><span class="question-number">1</span><div><h2>L'information est :</h2>
-      <label><input type="radio" name="q1" value="a"> une machine automatique</label>
-      <label><input type="radio" name="q1" value="b"> un ensemble de données ayant un sens</label>
-      <label><input type="radio" name="q1" value="c"> uniquement un logiciel</label>
-    </div></section>
-
+      <label><input type="radio" name="q1" value="a"> une machine automatique</label><label><input type="radio" name="q1" value="b"> un ensemble de données ayant un sens</label><label><input type="radio" name="q1" value="c"> uniquement un logiciel</label></div></section>
     <section class="question"><span class="question-number">2</span><div><h2>Traiter une information signifie :</h2>
-      <label><input type="radio" name="q2" value="a"> lui appliquer des opérations pour obtenir des résultats</label>
-      <label><input type="radio" name="q2" value="b"> supprimer toutes les données</label>
-      <label><input type="radio" name="q2" value="c"> imprimer automatiquement un document</label>
-    </div></section>
-
+      <label><input type="radio" name="q2" value="a"> lui appliquer des opérations pour obtenir des résultats</label><label><input type="radio" name="q2" value="b"> supprimer toutes les données</label><label><input type="radio" name="q2" value="c"> imprimer automatiquement un document</label></div></section>
     <section class="question"><span class="question-number">3</span><div><h2>L'informatique est :</h2>
-      <label><input type="radio" name="q3" value="a"> une machine</label>
-      <label><input type="radio" name="q3" value="b"> une science qui étudie le traitement des informations à l'aide de machines automatiques</label>
-      <label><input type="radio" name="q3" value="c"> uniquement un système d'exploitation</label>
-    </div></section>
+      <label><input type="radio" name="q3" value="a"> une machine</label><label><input type="radio" name="q3" value="b"> une science qui étudie le traitement des informations à l'aide de machines automatiques</label><label><input type="radio" name="q3" value="c"> uniquement un système d'exploitation</label></div></section>
+    <section class="question"><span class="question-number">4</span><div><h2>Un ordinateur permet principalement :</h2>
+      <label><input type="radio" name="q4" value="a"> le traitement automatique des informations</label><label><input type="radio" name="q4" value="b"> uniquement l'affichage d'images</label><label><input type="radio" name="q4" value="c"> uniquement l'impression</label></div></section>
 
-    <section class="question"><span class="question-number">4</span><div><h2>Un ordinateur est :</h2>
-      <label><input type="radio" name="q4" value="a"> une machine qui permet le traitement automatique des informations</label>
-      <label><input type="radio" name="q4" value="b"> uniquement un écran</label>
-      <label><input type="radio" name="q4" value="c"> un logiciel d'application</label>
-    </div></section>
+    <section class="question"><span class="question-number">5</span><div><h2>Observe l’unité centrale. Quel numéro désigne le processeur (CPU) ?</h2>
+      <img class="exercise-image" src="assets/images/unite-centrale-numerotee.png" alt="Schéma numéroté des composants d'une unité centrale">
+      <div class="choice-grid"><label><input type="radio" name="q5" value="1"> 1</label><label><input type="radio" name="q5" value="2"> 2</label><label><input type="radio" name="q5" value="3"> 3</label><label><input type="radio" name="q5" value="4"> 4</label></div></div></section>
 
-    <section class="question"><span class="question-number">5</span><div><h2>La partie qui réalise principalement le traitement est :</h2>
-      <label><input type="radio" name="q5" value="a"> l'unité centrale</label>
-      <label><input type="radio" name="q5" value="b"> le clavier</label>
-      <label><input type="radio" name="q5" value="c"> l'imprimante</label>
-    </div></section>
+    <section class="question"><span class="question-number">6</span><div><h2>Sur la même image, quel numéro désigne la mémoire RAM ?</h2>
+      <div class="choice-grid"><label><input type="radio" name="q6" value="1"> 1</label><label><input type="radio" name="q6" value="2"> 2</label><label><input type="radio" name="q6" value="3"> 3</label><label><input type="radio" name="q6" value="6"> 6</label></div></div></section>
 
-    <section class="question"><span class="question-number">6</span><div><h2>Le clavier est un périphérique :</h2>
-      <label><input type="radio" name="q6" value="a"> d'entrée</label>
-      <label><input type="radio" name="q6" value="b"> de sortie</label>
-      <label><input type="radio" name="q6" value="c"> de stockage</label>
-    </div></section>
+    <section class="question"><span class="question-number">7</span><div><h2>Quel numéro correspond au dispositif de stockage représenté dans l’unité centrale ?</h2>
+      <div class="choice-grid"><label><input type="radio" name="q7" value="2"> 2</label><label><input type="radio" name="q7" value="3"> 3</label><label><input type="radio" name="q7" value="5"> 5</label><label><input type="radio" name="q7" value="6"> 6</label></div></div></section>
 
-    <section class="question"><span class="question-number">7</span><div><h2>L'écran est un périphérique :</h2>
-      <label><input type="radio" name="q7" value="a"> d'entrée</label>
-      <label><input type="radio" name="q7" value="b"> de sortie</label>
-      <label><input type="radio" name="q7" value="c"> de stockage</label>
-    </div></section>
+    <section class="question"><span class="question-number">8</span><div><h2>Quel numéro désigne l’alimentation électrique (bloc d’alimentation) ?</h2>
+      <div class="choice-grid"><label><input type="radio" name="q8" value="1"> 1</label><label><input type="radio" name="q8" value="3"> 3</label><label><input type="radio" name="q8" value="4"> 4</label><label><input type="radio" name="q8" value="5"> 5</label></div></div></section>
 
-    <section class="question"><span class="question-number">8</span><div><h2>Lequel est un périphérique de stockage ?</h2>
-      <label><input type="radio" name="q8" value="a"> Écran</label>
-      <label><input type="radio" name="q8" value="b"> Clavier</label>
-      <label><input type="radio" name="q8" value="c"> Clé USB</label>
-    </div></section>
+    <section class="question"><span class="question-number">9</span><div><h2>Quels éléments font partie de l’unité centrale ?</h2>
+      <label><input type="checkbox" name="q9" value="cpu"> Processeur</label><label><input type="checkbox" name="q9" value="ram"> Mémoire RAM</label><label><input type="checkbox" name="q9" value="screen"> Écran</label><label><input type="checkbox" name="q9" value="storage"> Disque/SSD de stockage</label></div></section>
 
-    <section class="question"><span class="question-number">9</span><div><h2>Un logiciel est :</h2>
-      <label><input type="radio" name="q9" value="a"> un ensemble de programmes donnant des commandes à la machine</label>
-      <label><input type="radio" name="q9" value="b"> un périphérique de sortie</label>
-      <label><input type="radio" name="q9" value="c"> uniquement un câble</label>
-    </div></section>
+    <section class="question"><span class="question-number">10</span><div><h2>Le clavier est un périphérique :</h2>
+      <label><input type="radio" name="q10" value="a"> d'entrée</label><label><input type="radio" name="q10" value="b"> de sortie</label><label><input type="radio" name="q10" value="c"> de stockage</label></div></section>
 
-    <section class="question"><span class="question-number">10</span><div><h2>Windows et Linux sont principalement :</h2>
-      <label><input type="radio" name="q10" value="a"> des logiciels d'application</label>
-      <label><input type="radio" name="q10" value="b"> des systèmes d'exploitation</label>
-      <label><input type="radio" name="q10" value="c"> des périphériques</label>
-    </div></section>
+    <section class="question"><span class="question-number">11</span><div><h2>L'écran est un périphérique :</h2>
+      <label><input type="radio" name="q11" value="a"> d'entrée</label><label><input type="radio" name="q11" value="b"> de sortie</label><label><input type="radio" name="q11" value="c"> de stockage</label></div></section>
 
-    <section class="question"><span class="question-number">11</span><div><h2>Word et PowerPoint sont :</h2>
-      <label><input type="radio" name="q11" value="a"> des logiciels d'application</label>
-      <label><input type="radio" name="q11" value="b"> des périphériques d'entrée</label>
-      <label><input type="radio" name="q11" value="c"> des systèmes informatiques complets</label>
-    </div></section>
+    <section class="question"><span class="question-number">12</span><div><h2>Observe l'image. Quels objets sont des périphériques de stockage ?</h2>
+      <img class="exercise-image" src="assets/images/peripheriques-a-f.png" alt="Six périphériques identifiés par des lettres A à F">
+      <label><input type="radio" name="q12" value="A"> A — Clavier</label><label><input type="radio" name="q12" value="C"> C — Clé USB</label><label><input type="radio" name="q12" value="B"> B — Écran</label><label><input type="radio" name="q12" value="E"> E — Caméra</label></div></section>
 
-    <section class="question"><span class="question-number">12</span><div><h2>Vrai ou faux : une imprimante est un périphérique de sortie.</h2>
-      <label><input type="radio" name="q12" value="a"> Vrai</label>
-      <label><input type="radio" name="q12" value="b"> Faux</label>
-    </div></section>
+    <section class="question"><span class="question-number">13</span><div><h2>La caméra est généralement un périphérique :</h2>
+      <label><input type="radio" name="q13" value="a"> d'entrée</label><label><input type="radio" name="q13" value="b"> de sortie</label><label><input type="radio" name="q13" value="c"> de stockage</label></div></section>
 
-    <section class="question"><span class="question-number">13</span><div><h2>Vrai ou faux : une caméra peut être considérée comme un périphérique d'entrée.</h2>
-      <label><input type="radio" name="q13" value="a"> Vrai</label>
-      <label><input type="radio" name="q13" value="b"> Faux</label>
-    </div></section>
+    <section class="question"><span class="question-number">14</span><div><h2>Vrai ou faux : une imprimante est un périphérique de sortie.</h2>
+      <label><input type="radio" name="q14" value="v"> Vrai</label><label><input type="radio" name="q14" value="f"> Faux</label></div></section>
 
-    <section class="question"><span class="question-number">14</span><div><h2>Un système informatique permet de :</h2>
-      <label><input type="radio" name="q14" value="a"> seulement jouer</label>
-      <label><input type="radio" name="q14" value="b"> conserver, traiter et transmettre l'information</label>
-      <label><input type="radio" name="q14" value="c"> seulement imprimer</label>
-    </div></section>
+    <section class="question"><span class="question-number">15</span><div><h2>Un logiciel est :</h2>
+      <label><input type="radio" name="q15" value="a"> un ensemble de programmes donnant des commandes à la machine</label><label><input type="radio" name="q15" value="b"> un périphérique</label><label><input type="radio" name="q15" value="c"> un câble</label></div></section>
 
-    <section class="question"><span class="question-number">15</span><div><h2>Un système informatique comprend principalement :</h2>
-      <label><input type="radio" name="q15" value="a"> Hardware et Software</label>
-      <label><input type="radio" name="q15" value="b"> Clavier et souris uniquement</label>
-      <label><input type="radio" name="q15" value="c"> Internet et imprimante uniquement</label>
-    </div></section>
+    <section class="question"><span class="question-number">16</span><div><h2>Windows et Linux sont principalement :</h2>
+      <label><input type="radio" name="q16" value="a"> des logiciels d'application</label><label><input type="radio" name="q16" value="b"> des systèmes d'exploitation</label><label><input type="radio" name="q16" value="c"> des périphériques</label></div></section>
+
+    <section class="question"><span class="question-number">17</span><div><h2>Word et PowerPoint sont :</h2>
+      <label><input type="radio" name="q17" value="a"> des logiciels d'application</label><label><input type="radio" name="q17" value="b"> des systèmes d'exploitation</label><label><input type="radio" name="q17" value="c"> des périphériques d'entrée</label></div></section>
+
+    <section class="question"><span class="question-number">18</span><div><h2>Quels sont les deux grands éléments d’un système informatique ?</h2>
+      <label><input type="checkbox" name="q18" value="hardware"> Hardware (partie matérielle)</label><label><input type="checkbox" name="q18" value="software"> Software (partie logicielle)</label><label><input type="checkbox" name="q18" value="internet"> Internet uniquement</label></div></section>
+
+    <section class="question"><span class="question-number">19</span><div><h2>Un système informatique permet de :</h2>
+      <label><input type="radio" name="q19" value="a"> seulement jouer</label><label><input type="radio" name="q19" value="b"> conserver, traiter et transmettre l'information</label><label><input type="radio" name="q19" value="c"> seulement imprimer</label></div></section>
+
+    <section class="question"><span class="question-number">20</span><div><h2>Vrai ou faux : le matériel (Hardware) correspond aux éléments physiques que l’on peut toucher.</h2>
+      <label><input type="radio" name="q20" value="v"> Vrai</label><label><input type="radio" name="q20" value="f"> Faux</label></div></section>
 
     <button class="button primary" type="submit">✓ Corriger mes réponses</button>
     <button class="button secondary" type="button" id="resetQuiz">↻ Recommencer</button>
@@ -115,31 +96,44 @@
 <footer class="footer">© 2026 — Espace Informatique</footer>
 <script src="js/app.js"></script>
 <script>
-document.getElementById("quiz").addEventListener("submit", function(e) {
+const answers = {
+  q1:'b', q2:'a', q3:'b', q4:'a', q5:'1', q6:'2', q7:'3', q8:'4',
+  q10:'a', q11:'b', q12:'C', q13:'a', q14:'v', q15:'a', q16:'b', q17:'a', q19:'b', q20:'v'
+};
+const multiAnswers = {q9:['cpu','ram','storage'], q18:['hardware','software']};
+
+function sameSet(values, expected){
+  return values.length === expected.length && values.every(v => expected.includes(v));
+}
+
+document.getElementById('quiz').addEventListener('submit', function(e){
   e.preventDefault();
-  const answers = {q1:"b",q2:"a",q3:"b",q4:"a",q5:"a",q6:"a",q7:"b",q8:"c",q9:"a",q10:"b",q11:"a",q12:"a",q13:"a",q14:"b",q15:"a"};
   let score = 0;
   Object.entries(answers).forEach(([q, answer]) => {
     const selected = document.querySelector(`input[name="${q}"]:checked`);
-    if (selected && selected.value === answer) score++;
+    if(selected && selected.value === answer) score++;
   });
-  const box = document.getElementById("quizResult");
+  Object.entries(multiAnswers).forEach(([q, expected]) => {
+    const values = [...document.querySelectorAll(`input[name="${q}"]:checked`)].map(x=>x.value).sort();
+    if(sameSet(values, [...expected].sort())) score++;
+  });
+  const box = document.getElementById('quizResult');
   box.hidden = false;
-  const percent = Math.round(score / 15 * 100);
-  let message = "Relisez la leçon et essayez encore.";
-  if (score === 15) message = "Excellent ! Toutes les réponses sont correctes.";
-  else if (score >= 12) message = "Très bien ! Quelques petites erreurs à revoir.";
-  else if (score >= 9) message = "Bon travail. Relisez les notions qui posent problème.";
-  box.innerHTML = `<strong>${score}/15</strong><span>${percent}% — ${message}</span>`;
-  box.className = "quiz-result " + (score === 15 ? "success" : "partial");
-  box.scrollIntoView({behavior:"smooth", block:"nearest"});
+  const percent = Math.round(score / 20 * 100);
+  let message = 'Relis la leçon et réessaie.';
+  if(score === 20) message = 'Excellent ! Toutes les réponses sont correctes 🎉';
+  else if(score >= 16) message = 'Très bien ! Quelques notions restent à revoir.';
+  else if(score >= 12) message = 'Bon travail ! Continue à t’entraîner.';
+  box.innerHTML = `<strong>${score}/20</strong><span>${percent}% — ${message}</span>`;
+  box.className = 'quiz-result ' + (score === 20 ? 'success' : 'partial');
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
 });
 
-document.getElementById("resetQuiz").addEventListener("click", function() {
-  document.getElementById("quiz").reset();
-  const box = document.getElementById("quizResult");
+document.getElementById('resetQuiz').addEventListener('click', function(){
+  document.getElementById('quiz').reset();
+  const box = document.getElementById('quizResult');
   box.hidden = true;
-  window.scrollTo({top:0, behavior:"smooth"});
+  window.scrollTo({top:0, behavior:'smooth'});
 });
 </script>
 </body>
