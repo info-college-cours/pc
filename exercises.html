@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="css/style.css">
   <style>
     .exercise-image{width:100%;max-width:900px;display:block;margin:14px auto 18px;border-radius:16px;border:1px solid #dbe3ee;background:#fff}
+    .component-viewer{position:relative;max-width:920px;margin:14px auto 18px;border:1px solid #dbe3ee;border-radius:18px;background:#fff;padding:10px;box-shadow:0 8px 22px rgba(31,73,125,.08)}
+    .component-viewer img{width:100%;display:block;border-radius:12px}
+    .hotspot{position:absolute;width:44px;height:44px;border-radius:50%;border:3px solid #fff;background:#2563eb;color:#fff;font-weight:900;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);transform:translate(-50%,-50%);transition:.18s}
+    .hotspot:hover,.hotspot:focus{transform:translate(-50%,-50%) scale(1.1);outline:3px solid rgba(37,99,235,.25)}
+    .component-name{min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;margin:8px auto 2px;max-width:760px;padding:9px 14px;border-radius:12px;background:#eef6ff;color:#123b78;font-weight:800}
+    .image-note{font-size:13px;color:#5b677a;text-align:center;margin:4px 0 8px}
     .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
     .choice-grid label{background:#f7f9fc;border:1px solid #e3e9f2;border-radius:10px;padding:10px 12px}
     .feedback{margin-top:10px;font-size:14px;font-weight:700}
@@ -38,18 +44,28 @@
     <section class="question"><span class="question-number">4</span><div><h2>Un ordinateur permet principalement :</h2>
       <label><input type="radio" name="q4" value="a"> le traitement automatique des informations</label><label><input type="radio" name="q4" value="b"> uniquement l'affichage d'images</label><label><input type="radio" name="q4" value="c"> uniquement l'impression</label></div></section>
 
-    <section class="question"><span class="question-number">5</span><div><h2>Observe l’unité centrale. Quel numéro désigne le processeur (CPU) ?</h2>
-      <img class="exercise-image" src="assets/images/unite-centrale-numerotee.png" alt="Schéma numéroté des composants d'une unité centrale">
-      <div class="choice-grid"><label><input type="radio" name="q5" value="1"> 1</label><label><input type="radio" name="q5" value="2"> 2</label><label><input type="radio" name="q5" value="3"> 3</label><label><input type="radio" name="q5" value="4"> 4</label></div></div></section>
+    <section class="question"><span class="question-number">5</span><div><h2>Observe l’unité centrale. Clique sur un numéro pour découvrir le nom du composant.</h2>
+      <div class="component-viewer">
+        <img src="assets/images/unite-centrale-cliquable.jpg" alt="Unité centrale ouverte avec six composants numérotés">
+        <button type="button" class="hotspot" style="left:18%;top:17%" data-name="Alimentation (PSU)">1</button>
+        <button type="button" class="hotspot" style="left:30%;top:40%" data-name="Processeur (CPU)">2</button>
+        <button type="button" class="hotspot" style="left:53%;top:40%" data-name="Mémoire vive (RAM)">3</button>
+        <button type="button" class="hotspot" style="left:84%;top:49%" data-name="Disque dur / SSD">4</button>
+        <button type="button" class="hotspot" style="left:27%;top:68%" data-name="Carte mère">5</button>
+        <button type="button" class="hotspot" style="left:13%;top:42%" data-name="Ventilateur">6</button>
+      </div>
+      <div id="componentName" class="component-name">Clique sur un numéro 👆</div>
+      <p class="image-note">Les numéros servent à repérer les composants. Les noms apparaissent au clic.</p>
+    </div></section>
 
-    <section class="question"><span class="question-number">6</span><div><h2>Sur la même image, quel numéro désigne la mémoire RAM ?</h2>
-      <div class="choice-grid"><label><input type="radio" name="q6" value="1"> 1</label><label><input type="radio" name="q6" value="2"> 2</label><label><input type="radio" name="q6" value="3"> 3</label><label><input type="radio" name="q6" value="6"> 6</label></div></div></section>
+    <section class="question"><span class="question-number">6</span><div><h2>Quel numéro désigne le processeur (CPU) ?</h2>
+      <div class="choice-grid"><label><input type="radio" name="q6" value="1"> 1</label><label><input type="radio" name="q6" value="2"> 2</label><label><input type="radio" name="q6" value="3"> 3</label><label><input type="radio" name="q6" value="4"> 4</label></div></div></section>
 
-    <section class="question"><span class="question-number">7</span><div><h2>Quel numéro correspond au dispositif de stockage représenté dans l’unité centrale ?</h2>
-      <div class="choice-grid"><label><input type="radio" name="q7" value="2"> 2</label><label><input type="radio" name="q7" value="3"> 3</label><label><input type="radio" name="q7" value="5"> 5</label><label><input type="radio" name="q7" value="6"> 6</label></div></div></section>
+    <section class="question"><span class="question-number">7</span><div><h2>Quel numéro correspond à la mémoire RAM ?</h2>
+      <div class="choice-grid"><label><input type="radio" name="q7" value="1"> 1</label><label><input type="radio" name="q7" value="2"> 2</label><label><input type="radio" name="q7" value="3"> 3</label><label><input type="radio" name="q7" value="5"> 5</label></div></div></section>
 
-    <section class="question"><span class="question-number">8</span><div><h2>Quel numéro désigne l’alimentation électrique (bloc d’alimentation) ?</h2>
-      <div class="choice-grid"><label><input type="radio" name="q8" value="1"> 1</label><label><input type="radio" name="q8" value="3"> 3</label><label><input type="radio" name="q8" value="4"> 4</label><label><input type="radio" name="q8" value="5"> 5</label></div></div></section>
+    <section class="question"><span class="question-number">8</span><div><h2>Quel numéro désigne le disque dur / SSD ?</h2>
+      <div class="choice-grid"><label><input type="radio" name="q8" value="2"> 2</label><label><input type="radio" name="q8" value="3"> 3</label><label><input type="radio" name="q8" value="4"> 4</label><label><input type="radio" name="q8" value="6"> 6</label></div></div></section>
 
     <section class="question"><span class="question-number">9</span><div><h2>Quels éléments font partie de l’unité centrale ?</h2>
       <label><input type="checkbox" name="q9" value="cpu"> Processeur</label><label><input type="checkbox" name="q9" value="ram"> Mémoire RAM</label><label><input type="checkbox" name="q9" value="screen"> Écran</label><label><input type="checkbox" name="q9" value="storage"> Disque/SSD de stockage</label></div></section>
@@ -61,7 +77,7 @@
       <label><input type="radio" name="q11" value="a"> d'entrée</label><label><input type="radio" name="q11" value="b"> de sortie</label><label><input type="radio" name="q11" value="c"> de stockage</label></div></section>
 
     <section class="question"><span class="question-number">12</span><div><h2>Observe l'image. Quels objets sont des périphériques de stockage ?</h2>
-      <img class="exercise-image" src="assets/images/peripheriques-a-f.png" alt="Six périphériques identifiés par des lettres A à F">
+      <img class="exercise-image" src="assets/images/peripheriques-realistes.jpg" alt="Six périphériques informatiques réalistes identifiés par les lettres A à F">
       <label><input type="radio" name="q12" value="A"> A — Clavier</label><label><input type="radio" name="q12" value="C"> C — Clé USB</label><label><input type="radio" name="q12" value="B"> B — Écran</label><label><input type="radio" name="q12" value="E"> E — Caméra</label></div></section>
 
     <section class="question"><span class="question-number">13</span><div><h2>La caméra est généralement un périphérique :</h2>
@@ -97,7 +113,7 @@
 <script src="js/app.js"></script>
 <script>
 const answers = {
-  q1:'b', q2:'a', q3:'b', q4:'a', q5:'1', q6:'2', q7:'3', q8:'4',
+  q1:'b', q2:'a', q3:'b', q4:'a', q6:'2', q7:'3', q8:'4',
   q10:'a', q11:'b', q12:'C', q13:'a', q14:'v', q15:'a', q16:'b', q17:'a', q19:'b', q20:'v'
 };
 const multiAnswers = {q9:['cpu','ram','storage'], q18:['hardware','software']};
@@ -105,6 +121,13 @@ const multiAnswers = {q9:['cpu','ram','storage'], q18:['hardware','software']};
 function sameSet(values, expected){
   return values.length === expected.length && values.every(v => expected.includes(v));
 }
+
+document.querySelectorAll('.hotspot').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const box = document.getElementById('componentName');
+    box.textContent = 'N° ' + btn.textContent.trim() + ' : ' + btn.dataset.name;
+  });
+});
 
 document.getElementById('quiz').addEventListener('submit', function(e){
   e.preventDefault();
