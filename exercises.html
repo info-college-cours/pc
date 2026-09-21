@@ -53,15 +53,13 @@
         <img src="assets/images/unite-centrale-quiz-numerotee.jpg" alt="Unité centrale ouverte avec six repères numérotés, sans noms de composants">
       </div>
       <div class="component-strip" aria-label="Images des composants sans leurs noms">
-        <button type="button" class="component-tile" data-name="Alimentation (PSU)"><span class="tile-number">1</span><img src="assets/images/composant-1-sans-nom.jpg" alt="Composant numéro 1"></button>
-        <button type="button" class="component-tile" data-name="Processeur (CPU)"><span class="tile-number">2</span><img src="assets/images/composant-2-sans-nom.jpg" alt="Composant numéro 2"></button>
-        <button type="button" class="component-tile" data-name="Mémoire vive (RAM)"><span class="tile-number">3</span><img src="assets/images/composant-3-sans-nom.jpg" alt="Composant numéro 3"></button>
-        <button type="button" class="component-tile" data-name="Carte graphique (GPU)"><span class="tile-number">4</span><img src="assets/images/composant-4-sans-nom.jpg" alt="Composant numéro 4"></button>
-        <button type="button" class="component-tile" data-name="Carte mère"><span class="tile-number">5</span><img src="assets/images/composant-5-sans-nom.jpg" alt="Composant numéro 5"></button>
-        <button type="button" class="component-tile" data-name="Disque SSD"><span class="tile-number">6</span><img src="assets/images/composant-6-sans-nom.jpg" alt="Composant numéro 6"></button>
+        <button type="button" class="component-tile" aria-label="Composant numéro 1"><img src="assets/images/composant-1-sans-nom.jpg" alt="Composant numéro 1"></button>
+        <button type="button" class="component-tile" aria-label="Composant numéro 2"><img src="assets/images/composant-2-sans-nom.jpg" alt="Composant numéro 2"></button>
+        <button type="button" class="component-tile" aria-label="Composant numéro 3"><img src="assets/images/composant-3-sans-nom.jpg" alt="Composant numéro 3"></button>
+        <button type="button" class="component-tile" aria-label="Composant numéro 4"><img src="assets/images/composant-4-sans-nom.jpg" alt="Composant numéro 4"></button>
+        <button type="button" class="component-tile" aria-label="Composant numéro 5"><img src="assets/images/composant-5-sans-nom.jpg" alt="Composant numéro 5"></button>
+        <button type="button" class="component-tile" aria-label="Composant numéro 6"><img src="assets/images/composant-6-sans-nom.jpg" alt="Composant numéro 6"></button>
       </div>
-      <div id="componentName" class="component-name">Clique sur une image en bas pour découvrir son nom.</div>
-      <p class="image-note">Les noms sont cachés dans l’activité. Ils apparaissent seulement après un clic.</p>
     </div></section>
 
     <section class="question"><span class="question-number">6</span><div><h2>Quel numéro désigne le processeur (CPU) ?</h2>
@@ -127,13 +125,6 @@ const multiAnswers = {q18:['hardware','software']};
 function sameSet(values, expected){
   return values.length === expected.length && values.every(v => expected.includes(v));
 }
-
-document.querySelectorAll('.component-tile').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const box = document.getElementById('componentName');
-    box.textContent = 'N° ' + btn.querySelector('.tile-number').textContent.trim() + ' : ' + btn.dataset.name;
-  });
-});
 
 document.getElementById('quiz').addEventListener('submit', function(e){
   e.preventDefault();
