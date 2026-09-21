@@ -30,6 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const WEEK_GROUP = activeGroup();
+  const NEXT_GROUP = WEEK_GROUP === 1 ? 2 : 1;
+
+  function weekLabel(){
+    const now = new Date();
+    return `Semaine ${isoWeek(now)} · Groupe ${WEEK_GROUP}`;
+  }
 
   const today = document.getElementById("todaySchedule");
   const dayKeys = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
@@ -50,10 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = day.classes.map(className => `
       <div class="schedule-class-card">
         <div class="class-title" dir="rtl">${className}</div>
-        <div class="class-groups">
-          <span class="group-pill ${WEEK_GROUP===1?'active-group':'inactive-group'}">Groupe 1${WEEK_GROUP===1?' · cette semaine':''}</span>
-          <span class="group-pill ${WEEK_GROUP===2?'active-group':'inactive-group'}">Groupe 2${WEEK_GROUP===2?' · cette semaine':''}</span>
-        </div>
+        <div class="active-class-group">✓ Groupe ${WEEK_GROUP} · cette semaine</div>
+        <div class="next-group-note">La semaine prochaine : Groupe ${NEXT_GROUP}</div>
       </div>`).join("");
     return `<div class="schedule-day ${isToday?'is-today':''} ${day.classes.length===1?'single-class-day':''}">
       <div class="schedule-day-title"><span class="day">${day.label}</span>${isToday?'<span class="today-dot">Aujourd’hui</span>':''}</div>
@@ -66,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const idx = new Date().getDay()-1;
     if(idx>=0 && idx<6){
       const day=DAYS[idx];
-      banner.innerHTML=`<span class="pulse"></span><div><small>AUJOURD'HUI · ${day.label}</small><strong>${day.classes.map(c=>`<span dir="rtl">${c} — Groupe ${WEEK_GROUP}</span>`).join(" &nbsp; | &nbsp; ")}</strong></div>`;
+      banner.innerHTML=`<span class="pulse"></span><div><small>AUJOURD'HUI · ${day.label} · ${weekLabel()}</small><strong>${day.classes.map(c=>`<span dir="rtl">${c} — Groupe ${WEEK_GROUP}</span>`).join(" &nbsp; | &nbsp; ")}</strong></div>`;
     }else banner.innerHTML=`<span>📅</span><div><small>WEEK-END</small><strong>Le programme reprend lundi.</strong></div>`;
   }
 });
