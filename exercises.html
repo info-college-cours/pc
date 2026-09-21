@@ -7,12 +7,16 @@
   <link rel="stylesheet" href="css/style.css">
   <style>
     .exercise-image{width:100%;max-width:900px;display:block;margin:14px auto 18px;border-radius:16px;border:1px solid #dbe3ee;background:#fff}
-    .component-viewer{position:relative;max-width:920px;margin:14px auto 18px;border:1px solid #dbe3ee;border-radius:18px;background:#fff;padding:10px;box-shadow:0 8px 22px rgba(31,73,125,.08)}
+    .component-viewer{max-width:980px;margin:14px auto 10px;border:1px solid #dbe3ee;border-radius:18px;background:#fff;padding:10px;box-shadow:0 8px 22px rgba(31,73,125,.08)}
     .component-viewer img{width:100%;display:block;border-radius:12px}
-    .hotspot{position:absolute;width:44px;height:44px;border-radius:50%;border:3px solid #fff;background:#2563eb;color:#fff;font-weight:900;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);transform:translate(-50%,-50%);transition:.18s}
-    .hotspot:hover,.hotspot:focus{transform:translate(-50%,-50%) scale(1.1);outline:3px solid rgba(37,99,235,.25)}
+    .component-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:980px;margin:10px auto 12px}
+    .component-tile{border:2px solid #e3e9f2;border-radius:14px;background:#f8fafc;padding:5px;cursor:pointer;transition:.18s;box-shadow:0 3px 10px rgba(31,73,125,.05)}
+    .component-tile:hover,.component-tile:focus{transform:translateY(-2px);border-color:#2563eb;outline:none}
+    .component-tile img{width:100%;height:88px;object-fit:cover;object-position:center;border-radius:9px;display:block}
+    .tile-number{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;background:#2563eb;color:#fff;font-weight:900;margin:4px auto 1px}
     .component-name{min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;margin:8px auto 2px;max-width:760px;padding:9px 14px;border-radius:12px;background:#eef6ff;color:#123b78;font-weight:800}
     .image-note{font-size:13px;color:#5b677a;text-align:center;margin:4px 0 8px}
+    @media(max-width:760px){.component-strip{grid-template-columns:repeat(3,1fr)}.component-tile img{height:72px}}
     .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
     .choice-grid label{background:#f7f9fc;border:1px solid #e3e9f2;border-radius:10px;padding:10px 12px}
     .feedback{margin-top:10px;font-size:14px;font-weight:700}
@@ -44,18 +48,20 @@
     <section class="question"><span class="question-number">4</span><div><h2>Un ordinateur permet principalement :</h2>
       <label><input type="radio" name="q4" value="a"> le traitement automatique des informations</label><label><input type="radio" name="q4" value="b"> uniquement l'affichage d'images</label><label><input type="radio" name="q4" value="c"> uniquement l'impression</label></div></section>
 
-    <section class="question"><span class="question-number">5</span><div><h2>Observe l’unité centrale. Clique sur un numéro pour découvrir le nom du composant.</h2>
+    <section class="question"><span class="question-number">5</span><div><h2>Observe l’unité centrale. Les numéros indiquent les composants.</h2>
       <div class="component-viewer">
-        <img src="assets/images/unite-centrale-cliquable.jpg" alt="Unité centrale ouverte avec six composants clairement identifiés">
-        <button type="button" class="hotspot" style="left:8%;top:18%" data-name="Alimentation (PSU)">1</button>
-        <button type="button" class="hotspot" style="left:24%;top:36%" data-name="Processeur (CPU)">2</button>
-        <button type="button" class="hotspot" style="left:58%;top:35%" data-name="Mémoire vive (RAM)">3</button>
-        <button type="button" class="hotspot" style="left:15%;top:57%" data-name="Carte graphique (GPU)">4</button>
-        <button type="button" class="hotspot" style="left:31%;top:47%" data-name="Carte mère">5</button>
-        <button type="button" class="hotspot" style="left:52%;top:48%" data-name="Disque SSD">6</button>
+        <img src="assets/images/unite-centrale-quiz-numerotee.jpg" alt="Unité centrale ouverte avec six repères numérotés, sans noms de composants">
       </div>
-      <div id="componentName" class="component-name">Clique sur un numéro 👆</div>
-      <p class="image-note">Les composants sont présentés avec des repères et des images détaillées pour faciliter leur identification.</p>
+      <div class="component-strip" aria-label="Images des composants sans leurs noms">
+        <button type="button" class="component-tile" data-name="Alimentation (PSU)"><span class="tile-number">1</span><img src="assets/images/composant-1-sans-nom.jpg" alt="Composant numéro 1"></button>
+        <button type="button" class="component-tile" data-name="Processeur (CPU)"><span class="tile-number">2</span><img src="assets/images/composant-2-sans-nom.jpg" alt="Composant numéro 2"></button>
+        <button type="button" class="component-tile" data-name="Mémoire vive (RAM)"><span class="tile-number">3</span><img src="assets/images/composant-3-sans-nom.jpg" alt="Composant numéro 3"></button>
+        <button type="button" class="component-tile" data-name="Carte graphique (GPU)"><span class="tile-number">4</span><img src="assets/images/composant-4-sans-nom.jpg" alt="Composant numéro 4"></button>
+        <button type="button" class="component-tile" data-name="Carte mère"><span class="tile-number">5</span><img src="assets/images/composant-5-sans-nom.jpg" alt="Composant numéro 5"></button>
+        <button type="button" class="component-tile" data-name="Disque SSD"><span class="tile-number">6</span><img src="assets/images/composant-6-sans-nom.jpg" alt="Composant numéro 6"></button>
+      </div>
+      <div id="componentName" class="component-name">Clique sur une image en bas pour découvrir son nom.</div>
+      <p class="image-note">Les noms sont cachés dans l’activité. Ils apparaissent seulement après un clic.</p>
     </div></section>
 
     <section class="question"><span class="question-number">6</span><div><h2>Quel numéro désigne le processeur (CPU) ?</h2>
@@ -122,10 +128,10 @@ function sameSet(values, expected){
   return values.length === expected.length && values.every(v => expected.includes(v));
 }
 
-document.querySelectorAll('.hotspot').forEach(btn => {
+document.querySelectorAll('.component-tile').forEach(btn => {
   btn.addEventListener('click', () => {
     const box = document.getElementById('componentName');
-    box.textContent = 'N° ' + btn.textContent.trim() + ' : ' + btn.dataset.name;
+    box.textContent = 'N° ' + btn.querySelector('.tile-number').textContent.trim() + ' : ' + btn.dataset.name;
   });
 });
 
