@@ -46,16 +46,16 @@
 
     <section class="question"><span class="question-number">5</span><div><h2>Observe l’unité centrale. Clique sur un numéro pour découvrir le nom du composant.</h2>
       <div class="component-viewer">
-        <img src="assets/images/unite-centrale-cliquable.jpg" alt="Unité centrale ouverte avec six composants numérotés">
-        <button type="button" class="hotspot" style="left:18%;top:17%" data-name="Alimentation (PSU)">1</button>
-        <button type="button" class="hotspot" style="left:30%;top:40%" data-name="Processeur (CPU)">2</button>
-        <button type="button" class="hotspot" style="left:53%;top:40%" data-name="Mémoire vive (RAM)">3</button>
-        <button type="button" class="hotspot" style="left:84%;top:49%" data-name="Disque dur / SSD">4</button>
-        <button type="button" class="hotspot" style="left:27%;top:68%" data-name="Carte mère">5</button>
-        <button type="button" class="hotspot" style="left:13%;top:42%" data-name="Ventilateur">6</button>
+        <img src="assets/images/unite-centrale-cliquable.jpg" alt="Unité centrale ouverte avec six composants clairement identifiés">
+        <button type="button" class="hotspot" style="left:8%;top:18%" data-name="Alimentation (PSU)">1</button>
+        <button type="button" class="hotspot" style="left:24%;top:36%" data-name="Processeur (CPU)">2</button>
+        <button type="button" class="hotspot" style="left:58%;top:35%" data-name="Mémoire vive (RAM)">3</button>
+        <button type="button" class="hotspot" style="left:15%;top:57%" data-name="Carte graphique (GPU)">4</button>
+        <button type="button" class="hotspot" style="left:31%;top:47%" data-name="Carte mère">5</button>
+        <button type="button" class="hotspot" style="left:52%;top:48%" data-name="Disque SSD">6</button>
       </div>
       <div id="componentName" class="component-name">Clique sur un numéro 👆</div>
-      <p class="image-note">Les numéros servent à repérer les composants. Les noms apparaissent au clic.</p>
+      <p class="image-note">Les composants sont présentés avec des repères et des images détaillées pour faciliter leur identification.</p>
     </div></section>
 
     <section class="question"><span class="question-number">6</span><div><h2>Quel numéro désigne le processeur (CPU) ?</h2>
@@ -67,8 +67,8 @@
     <section class="question"><span class="question-number">8</span><div><h2>Quel numéro désigne le disque dur / SSD ?</h2>
       <div class="choice-grid"><label><input type="radio" name="q8" value="2"> 2</label><label><input type="radio" name="q8" value="3"> 3</label><label><input type="radio" name="q8" value="4"> 4</label><label><input type="radio" name="q8" value="6"> 6</label></div></div></section>
 
-    <section class="question"><span class="question-number">9</span><div><h2>Quels éléments font partie de l’unité centrale ?</h2>
-      <label><input type="checkbox" name="q9" value="cpu"> Processeur</label><label><input type="checkbox" name="q9" value="ram"> Mémoire RAM</label><label><input type="checkbox" name="q9" value="screen"> Écran</label><label><input type="checkbox" name="q9" value="storage"> Disque/SSD de stockage</label></div></section>
+    <section class="question"><span class="question-number">9</span><div><h2>Quel numéro désigne la carte graphique (GPU) ?</h2>
+      <div class="choice-grid"><label><input type="radio" name="q9" value="2"> 2</label><label><input type="radio" name="q9" value="3"> 3</label><label><input type="radio" name="q9" value="4"> 4</label><label><input type="radio" name="q9" value="6"> 6</label></div></div></section>
 
     <section class="question"><span class="question-number">10</span><div><h2>Le clavier est un périphérique :</h2>
       <label><input type="radio" name="q10" value="a"> d'entrée</label><label><input type="radio" name="q10" value="b"> de sortie</label><label><input type="radio" name="q10" value="c"> de stockage</label></div></section>
@@ -113,10 +113,10 @@
 <script src="js/app.js"></script>
 <script>
 const answers = {
-  q1:'b', q2:'a', q3:'b', q4:'a', q6:'2', q7:'3', q8:'4',
+  q1:'b', q2:'a', q3:'b', q4:'a', q6:'2', q7:'3', q8:'6', q9:'4',
   q10:'a', q11:'b', q12:'C', q13:'a', q14:'v', q15:'a', q16:'b', q17:'a', q19:'b', q20:'v'
 };
-const multiAnswers = {q9:['cpu','ram','storage'], q18:['hardware','software']};
+const multiAnswers = {q18:['hardware','software']};
 
 function sameSet(values, expected){
   return values.length === expected.length && values.every(v => expected.includes(v));
