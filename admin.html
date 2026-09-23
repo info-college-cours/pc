@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gestion des groupes — Professeur</title><link rel="stylesheet" href="css/style.css"></head>
-<body>
-<header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a><a class="back-link" href="groups.html">👥 Voir les groupes</a></header>
-<main class="container page">
-  <div class="page-heading"><p class="eyebrow">🔐 Espace professeur</p><h1>Gestion des groupes</h1><p>Choisis la date, la classe et le groupe réellement prévu pour chaque séance.</p></div>
-  <div class="admin-note">ℹ️ Cette page n’est pas proposée dans la navigation des élèves. Comme le site est hébergé sur GitHub Pages, les modifications doivent être exportées puis replacées dans <strong>data/groups.json</strong> pour être visibles sur tous les téléphones.</div>
-  <section class="admin-card" style="margin-top:14px"><h2>➕ Ajouter / modifier une séance</h2>
-    <div class="admin-form"><input id="date" type="date"><select id="class"><option value="">Choisir une classe</option></select><select id="group"><option value="1">Groupe 1</option><option value="2">Groupe 2</option></select></div>
-    <div class="admin-actions"><button class="button primary" id="save">Enregistrer</button><button class="button secondary" id="export">⬇️ Télécharger groups.json</button><button class="button secondary" id="reset">↺ Recharger le planning initial</button></div>
-  </section>
-  <section class="admin-card" style="margin-top:14px"><h2>📋 Séances enregistrées</h2><div style="overflow:auto"><table class="admin-table"><thead><tr><th>Date</th><th>Jour</th><th>Classe</th><th>Groupe</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></section>
-</main><footer class="footer">Espace professeur</footer>
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Gestion des groupes — Professeur</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">⚙️</span><span>Gestion des groupes</span></a><a class="back-link" href="groups.html">← Vue élève</a></header>
+<main class="container page"><div class="page-heading"><p class="eyebrow">Espace professeur</p><h1>⚙️ Gestion du planning</h1><p>Choisissez la date, la classe et le groupe réellement convoqué.</p></div>
+<section class="admin-card"><div class="admin-grid"><label>Date<input id="date" type="date"></label><label>Classe<select id="classe"></select></label><label>Groupe<select id="groupe"><option value="1">🟢 Groupe 1</option><option value="2">🔵 Groupe 2</option></select></label><button id="save" class="button primary">Enregistrer</button></div><div id="notice" class="admin-notice"></div></section>
+<section class="admin-card"><div class="admin-head"><div><h2>Planning enregistré</h2><p>Vous pouvez modifier ou supprimer chaque séance.</p></div><button id="export" class="button secondary">⬇ Exporter groups.json</button></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Jour</th><th>Classe</th><th>Groupe</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+<section class="admin-card help"><h2>🏖️ Vacances et reports</h2><p>Une semaine sans cours ne fait pas avancer automatiquement le groupe. Pour la prochaine séance réelle, choisissez simplement le groupe convoqué et enregistrez-le.</p></section>
+</main><footer class="footer">Page professeur — non affichée dans le menu élève</footer>
 <script>
-const classes=["الثالثة 1","الثالثة 2","الثالثة 3","الثالثة 4","الثالثة 5","الثالثة 6","الثالثة 7","الثالثة 8","الثالثة 9","الثالثة 10","الثالثة 11"];
-const days=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
-let data={schoolYear:'2026-2027',weeks:[],sessions:[],holidays:[]};
-async function load(){try{data=await fetch('data/groups.json?cb='+Date.now()).then(r=>r.json())}catch(e){} const local=localStorage.getItem('groupsData');if(local)try{data=JSON.parse(local)}catch(e){} render();}
-function persist(){localStorage.setItem('groupsData',JSON.stringify(data));render();}
-function render(){const cs=document.getElementById('class');if(cs.options.length===1)classes.forEach(c=>{let o=document.createElement('option');o.value=c;o.textContent=c;cs.appendChild(o)});const rows=document.getElementById('rows');const arr=[...(data.sessions||[])].sort((a,b)=>a.date.localeCompare(b.date)||a.class.localeCompare(b.class,'ar'));rows.innerHTML=arr.map((s,i)=>{const d=new Date(s.date+'T12:00:00');return `<tr><td>${s.date}</td><td>${days[d.getDay()]}</td><td dir="rtl">${s.class}</td><td><span class="active-class-group group-${s.group}">Groupe ${s.group}</span></td><td><button class="remove-btn" onclick="removeSession(${i})">Supprimer</button></td></tr>`}).join('')}
-function removeSession(i){const arr=[...(data.sessions||[])].sort((a,b)=>a.date.localeCompare(b.date)||a.class.localeCompare(b.class,'ar'));const target=arr[i];data.sessions=data.sessions.filter(s=>!(s.date===target.date&&s.class===target.class));persist()}
-document.getElementById('save').onclick=()=>{const date=document.getElementById('date').value,cls=document.getElementById('class').value,group=Number(document.getElementById('group').value);if(!date||!cls)return alert('Choisis la date et la classe.');data.sessions=(data.sessions||[]).filter(s=>!(s.date===date&&s.class===cls));data.sessions.push({date,class:cls,group});persist();alert('Séance enregistrée.');};
-document.getElementById('export').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='groups.json';a.click();URL.revokeObjectURL(a.href)};
-document.getElementById('reset').onclick=async()=>{if(!confirm('Recharger le planning initial ?'))return;localStorage.removeItem('groupsData');await load()};
-load();
+const classes=['الثالثة 1','الثالثة 2','الثالثة 3','الثالثة 4','الثالثة 5','الثالثة 6','الثالثة 7','الثالثة 8','الثالثة 9','الثالثة 10','الثالثة 11'];
+const dayNames=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+const initial=[
+['2026-09-22','الثالثة 4',1],['2026-09-22','الثالثة 6',1],
+['2026-09-23','الثالثة 7',1],['2026-09-23','الثالثة 5',1],
+['2026-09-24','الثالثة 3',1],['2026-09-24','الثالثة 2',1]
+];
+let data=JSON.parse(localStorage.getItem('groupsData')||'null')||initial.map(x=>({date:x[0],classe:x[1],groupe:x[2]}));
+const $=id=>document.getElementById(id); classes.forEach(c=>$('classe').add(new Option(c,c))); $('date').value=new Date().toISOString().slice(0,10);
+function render(){data.sort((a,b)=>a.date.localeCompare(b.date)||a.classe.localeCompare(b.classe));$('rows').innerHTML=data.map((r,i)=>`<tr><td>${r.date}</td><td>${dayNames[new Date(r.date+'T12:00:00').getDay()]}</td><td dir="rtl">${r.classe}</td><td><span class="group-pill g${r.groupe}">${r.groupe==1?'🟢 Groupe 1':'🔵 Groupe 2'}</span></td><td><button class="table-btn" onclick="editRow(${i})">Modifier</button><button class="table-btn danger" onclick="deleteRow(${i})">Supprimer</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Aucune séance enregistrée.</td></tr>';localStorage.setItem('groupsData',JSON.stringify(data));}
+$('save').onclick=()=>{const r={date:$('date').value,classe:$('classe').value,groupe:+$('groupe').value};if(!r.date){$('notice').textContent='Choisissez une date.';return}const i=data.findIndex(x=>x.date===r.date&&x.classe===r.classe);if(i>=0)data[i]=r;else data.push(r);render();$('notice').textContent='✓ Séance enregistrée.';};
+window.editRow=i=>{const r=data[i];$('date').value=r.date;$('classe').value=r.classe;$('groupe').value=r.groupe;window.scrollTo({top:0,behavior:'smooth'});};window.deleteRow=i=>{if(confirm('Supprimer cette séance ?')){data.splice(i,1);render();}};
+$('export').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='groups.json';a.click();URL.revokeObjectURL(a.href);};render();
 </script></body></html>
