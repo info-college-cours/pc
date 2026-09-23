@@ -23,13 +23,21 @@
   <section class="schedule-card">
     <div class="schedule-header">
       <div>
-        <h2>📅 Lundi → Samedi</h2>
+        <h2>📅 Planning des séances</h2>
+        <p>Le groupe affiché correspond à la séance réellement programmée.</p>
       </div>
+      <select id="classFilter" class="quiz-select" aria-label="Filtrer par classe">
+        <option value="all">Toutes les classes</option>
+      </select>
     </div>
 
     <div id="scheduleView" class="schedule-view"></div>
 
   </section>
+
+  <section class="schedule-card holiday-calendar"><div class="schedule-header"><div><h2>🏖️ Vacances et jours fériés</h2><p>Calendrier 2026-2027 intégré au planning.</p></div></div><div id="holidayList" class="holiday-list"></div></section>
+
+  <section id="nextSession" class="next-session"></section>
 </main>
 
 <footer class="footer">© 2026 — Espace Informatique</footer>

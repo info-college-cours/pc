@@ -126,21 +126,42 @@ function sameSet(values, expected){
   return values.length === expected.length && values.every(v => expected.includes(v));
 }
 
+const explanations = {
+ q1:'Une information est un ensemble de données ayant un sens.',
+ q2:'Traiter une information consiste à lui appliquer des opérations pour obtenir un résultat.',
+ q3:'L’informatique étudie le traitement des informations à l’aide de machines automatiques.',
+ q4:'L’ordinateur permet le traitement automatique des informations.',
+ q6:'Dans cette image, le processeur correspond au numéro 2.', q7:'La mémoire vive RAM correspond au numéro 3.', q8:'Le stockage SSD correspond au numéro 6.', q9:'La carte graphique correspond au numéro 4.',
+ q10:'Le clavier envoie des informations vers l’ordinateur : c’est un périphérique d’entrée.', q11:'L’écran restitue l’information : c’est un périphérique de sortie.',
+ q12:'La clé USB est un support de stockage.', q13:'Une caméra capture des informations : c’est un périphérique d’entrée.', q14:'Une imprimante restitue l’information sur papier : c’est une sortie.',
+ q15:'Un logiciel est un ensemble de programmes.', q16:'Windows et Linux sont des systèmes d’exploitation.', q17:'Word et PowerPoint sont des logiciels d’application.',
+ q18:'Un système informatique comprend une partie matérielle (Hardware) et une partie logicielle (Software).', q19:'Un système informatique sert notamment à conserver, traiter et transmettre l’information.', q20:'Le Hardware désigne les éléments physiques de la machine.'
+};
+
+function showFeedback(q, ok){
+  const section=document.querySelector(`input[name="${q}"]`)?.closest('.question');
+  if(!section) return;
+  let box=section.querySelector('.feedback');
+  if(!box){box=document.createElement('div');box.className='feedback';section.appendChild(box)}
+  box.textContent=(ok?'✓ Correct. ':'✗ Incorrect. ')+(explanations[q]||'');
+  box.style.color=ok?'#08764a':'#a12626';
+}
+
 document.getElementById('quiz').addEventListener('submit', function(e){
   e.preventDefault();
   let score = 0;
   Object.entries(answers).forEach(([q, answer]) => {
     const selected = document.querySelector(`input[name="${q}"]:checked`);
-    if(selected && selected.value === answer) score++;
+    const ok=!!selected && selected.value === answer; if(ok) score++; showFeedback(q,ok);
   });
   Object.entries(multiAnswers).forEach(([q, expected]) => {
     const values = [...document.querySelectorAll(`input[name="${q}"]:checked`)].map(x=>x.value).sort();
-    if(sameSet(values, [...expected].sort())) score++;
+    const ok=sameSet(values, [...expected].sort()); if(ok) score++; showFeedback(q,ok);
   });
   const box = document.getElementById('quizResult');
   box.hidden = false;
   const percent = Math.round(score / 20 * 100);
-  let message = 'Relis la leçon et réessaie.';
+  let message = 'Relis les explications et réessaie.';
   if(score === 20) message = 'Excellent ! Toutes les réponses sont correctes 🎉';
   else if(score >= 16) message = 'Très bien ! Quelques notions restent à revoir.';
   else if(score >= 12) message = 'Bon travail ! Continue à t’entraîner.';

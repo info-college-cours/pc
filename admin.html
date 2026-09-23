@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gestion des groupes — Professeur</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a><a class="back-link" href="groups.html">👥 Voir les groupes</a></header>
+<main class="container page">
+  <div class="page-heading"><p class="eyebrow">🔐 Espace professeur</p><h1>Gestion des groupes</h1><p>Choisis la date, la classe et le groupe réellement prévu pour chaque séance.</p></div>
+  <div class="admin-note">ℹ️ Cette page n’est pas proposée dans la navigation des élèves. Comme le site est hébergé sur GitHub Pages, les modifications doivent être exportées puis replacées dans <strong>data/groups.json</strong> pour être visibles sur tous les téléphones.</div>
+  <section class="admin-card" style="margin-top:14px"><h2>➕ Ajouter / modifier une séance</h2>
+    <div class="admin-form"><input id="date" type="date"><select id="class"><option value="">Choisir une classe</option></select><select id="group"><option value="1">Groupe 1</option><option value="2">Groupe 2</option></select></div>
+    <div class="admin-actions"><button class="button primary" id="save">Enregistrer</button><button class="button secondary" id="export">⬇️ Télécharger groups.json</button><button class="button secondary" id="reset">↺ Recharger le planning initial</button></div>
+  </section>
+  <section class="admin-card" style="margin-top:14px"><h2>📋 Séances enregistrées</h2><div style="overflow:auto"><table class="admin-table"><thead><tr><th>Date</th><th>Jour</th><th>Classe</th><th>Groupe</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></section>
+</main><footer class="footer">Espace professeur</footer>
+<script>
+const classes=["الثالثة 1","الثالثة 2","الثالثة 3","الثالثة 4","الثالثة 5","الثالثة 6","الثالثة 7","الثالثة 8","الثالثة 9","الثالثة 10","الثالثة 11"];
+const days=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+let data={schoolYear:'2026-2027',weeks:[],sessions:[],holidays:[]};
+async function load(){try{data=await fetch('data/groups.json?cb='+Date.now()).then(r=>r.json())}catch(e){} const local=localStorage.getItem('groupsData');if(local)try{data=JSON.parse(local)}catch(e){} render();}
+function persist(){localStorage.setItem('groupsData',JSON.stringify(data));render();}
+function render(){const cs=document.getElementById('class');if(cs.options.length===1)classes.forEach(c=>{let o=document.createElement('option');o.value=c;o.textContent=c;cs.appendChild(o)});const rows=document.getElementById('rows');const arr=[...(data.sessions||[])].sort((a,b)=>a.date.localeCompare(b.date)||a.class.localeCompare(b.class,'ar'));rows.innerHTML=arr.map((s,i)=>{const d=new Date(s.date+'T12:00:00');return `<tr><td>${s.date}</td><td>${days[d.getDay()]}</td><td dir="rtl">${s.class}</td><td><span class="active-class-group group-${s.group}">Groupe ${s.group}</span></td><td><button class="remove-btn" onclick="removeSession(${i})">Supprimer</button></td></tr>`}).join('')}
+function removeSession(i){const arr=[...(data.sessions||[])].sort((a,b)=>a.date.localeCompare(b.date)||a.class.localeCompare(b.class,'ar'));const target=arr[i];data.sessions=data.sessions.filter(s=>!(s.date===target.date&&s.class===target.class));persist()}
+document.getElementById('save').onclick=()=>{const date=document.getElementById('date').value,cls=document.getElementById('class').value,group=Number(document.getElementById('group').value);if(!date||!cls)return alert('Choisis la date et la classe.');data.sessions=(data.sessions||[]).filter(s=>!(s.date===date&&s.class===cls));data.sessions.push({date,class:cls,group});persist();alert('Séance enregistrée.');};
+document.getElementById('export').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='groups.json';a.click();URL.revokeObjectURL(a.href)};
+document.getElementById('reset').onclick=async()=>{if(!confirm('Recharger le planning initial ?'))return;localStorage.removeItem('groupsData');await load()};
+load();
+</script></body></html>
