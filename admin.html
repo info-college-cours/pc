@@ -1,22 +1,60 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Gestion des groupes — Professeur</title><link rel="stylesheet" href="css/style.css"></head><body>
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Gestion des groupes — Professeur</title><link rel="stylesheet" href="css/style.css">
+<style>
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.admin-tab{border:1px solid #dbe3ee;background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:800}.admin-tab.active{background:#2563eb;color:#fff;border-color:#2563eb}.admin-panel[hidden]{display:none}.auto-badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1555a0;font-weight:800;font-size:12px}.closed-badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#fff1f2;color:#a11a2b;font-weight:800;font-size:12px}.mini-note{font-size:13px;color:#64748b;margin-top:7px}.preview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.preview-item{border:1px solid #e2e8f0;border-radius:12px;padding:12px;background:#fafcff}.preview-item strong{display:block;margin-bottom:5px}.form-actions{display:flex;gap:8px;flex-wrap:wrap}.table-btn.small{padding:6px 9px;font-size:12px}
+</style></head><body>
 <header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">⚙️</span><span>Gestion des groupes</span></a><a class="back-link" href="groups.html">← Vue élève</a></header>
-<main class="container page"><div class="page-heading"><p class="eyebrow">Espace professeur</p><h1>⚙️ Gestion du planning</h1><p>Choisissez la date, la classe et le groupe réellement convoqué.</p></div>
-<section class="admin-card"><div class="admin-grid"><label>Date<input id="date" type="date"></label><label>Classe<select id="classe"></select></label><label>Groupe<select id="groupe"><option value="1">🟢 Groupe 1</option><option value="2">🔵 Groupe 2</option></select></label><button id="save" class="button primary">Enregistrer</button></div><div id="notice" class="admin-notice"></div></section>
-<section class="admin-card"><div class="admin-head"><div><h2>Planning enregistré</h2><p>Vous pouvez modifier ou supprimer chaque séance.</p></div><button id="export" class="button secondary">⬇ Exporter groups.json</button></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Jour</th><th>Classe</th><th>Groupe</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></section>
-<section class="admin-card help"><h2>🏖️ Vacances et reports</h2><p>Une semaine sans cours ne fait pas avancer automatiquement le groupe. Pour la prochaine séance réelle, choisissez simplement le groupe convoqué et enregistrez-le.</p></section>
+<main class="container page">
+<div class="page-heading"><p class="eyebrow">Espace professeur</p><h1>⚙️ Gestion du planning</h1><p>Le système alterne automatiquement les groupes. Vous intervenez seulement en cas de changement réel.</p></div>
+<section class="admin-card">
+  <div class="admin-tabs"><button class="admin-tab active" data-tab="planning">🔄 Planning</button><button class="admin-tab" data-tab="closed">🚫 Jours sans cours</button></div>
+  <div id="planning" class="admin-panel">
+    <div class="admin-notice"><strong>Mode automatique :</strong> Groupe 1 → Groupe 2 → Groupe 1… Une vacance ou un jour sans cours ne fait pas avancer la rotation. Pour une séance exceptionnelle, choisissez simplement le groupe réel ci-dessous.</div>
+    <div class="admin-grid" style="margin-top:12px">
+      <label>Date<input id="date" type="date"></label><label>Classe<select id="classe"></select></label><label>Groupe réel<select id="groupe"><option value="1">🟢 Groupe 1</option><option value="2">🔵 Groupe 2</option></select></label><button id="save" class="button primary">Enregistrer la modification</button>
+    </div><div id="notice" class="admin-notice"></div>
+    <p class="mini-note">Laissez une date en automatique si vous n’avez rien à modifier. Une modification manuelle ne change pas la rotation des séances suivantes.</p>
+  </div>
+  <div id="closed" class="admin-panel" hidden>
+    <div class="admin-notice"><strong>Exception :</strong> utilisez cette partie seulement lorsqu’une journée normalement prévue n’a réellement pas de cours pour vos classes (réunion, fermeture, report…).</div>
+    <div class="admin-grid" style="margin-top:12px"><label>Date sans cours<input id="closedDate" type="date"></label><label>Motif<input id="closedReason" type="text" placeholder="Ex. Réunion / report"></label><button id="addClosed" class="button primary">Ajouter</button></div>
+    <div class="table-wrap" style="margin-top:14px"><table><thead><tr><th>Date</th><th>Motif</th><th>Action</th></tr></thead><tbody id="closedRows"></tbody></table></div>
+  </div>
+</section>
+<section class="admin-card"><div class="admin-head"><div><h2>Planning à venir</h2><p>Les lignes <span class="auto-badge">Automatique</span> sont calculées sans saisie. Les lignes modifiées portent la mention « Professeur ».</p></div><div class="form-actions"><button id="export" class="button secondary">⬇ Exporter groups.json</button></div></div><div id="preview" class="preview-grid"></div></section>
+<section class="admin-card"><div class="admin-head"><div><h2>Modifications manuelles</h2><p>Seules ces exceptions seront exportées pour être visibles sur les appareils des élèves.</p></div></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Jour</th><th>Classe</th><th>Groupe</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+<section class="admin-card help"><h2>📤 Après modification</h2><p>1. Enregistrez vos exceptions ici. 2. Cliquez sur « Exporter groups.json ». 3. Remplacez le fichier <strong>data/groups.json</strong> sur GitHub Pages. Les élèves verront alors les mêmes exceptions, tandis que le reste du planning reste automatique.</p></section>
 </main><footer class="footer">Page professeur — non affichée dans le menu élève</footer>
 <script>
 const classes=['الثالثة 1','الثالثة 2','الثالثة 3','الثالثة 4','الثالثة 5','الثالثة 6','الثالثة 7','الثالثة 8','الثالثة 9','الثالثة 10','الثالثة 11'];
+const weekly={1:['الثالثة 4','الثالثة 6'],2:['الثالثة 7','الثالثة 5'],3:['الثالثة 3','الثالثة 2'],4:['الثالثة 10','الثالثة 1'],5:['الثالثة 8'],6:['الثالثة 11','الثالثة 9']};
 const dayNames=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-const initial=[
-['2026-09-22','الثالثة 4',1],['2026-09-22','الثالثة 6',1],
-['2026-09-23','الثالثة 7',1],['2026-09-23','الثالثة 5',1],
-['2026-09-24','الثالثة 3',1],['2026-09-24','الثالثة 2',1]
-];
-let data=JSON.parse(localStorage.getItem('groupsData')||'null')||initial.map(x=>({date:x[0],classe:x[1],groupe:x[2]}));
-const $=id=>document.getElementById(id); classes.forEach(c=>$('classe').add(new Option(c,c))); $('date').value=new Date().toISOString().slice(0,10);
-function render(){data.sort((a,b)=>a.date.localeCompare(b.date)||a.classe.localeCompare(b.classe));$('rows').innerHTML=data.map((r,i)=>`<tr><td>${r.date}</td><td>${dayNames[new Date(r.date+'T12:00:00').getDay()]}</td><td dir="rtl">${r.classe}</td><td><span class="group-pill g${r.groupe}">${r.groupe==1?'🟢 Groupe 1':'🔵 Groupe 2'}</span></td><td><button class="table-btn" onclick="editRow(${i})">Modifier</button><button class="table-btn danger" onclick="deleteRow(${i})">Supprimer</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Aucune séance enregistrée.</td></tr>';localStorage.setItem('groupsData',JSON.stringify(data));}
-$('save').onclick=()=>{const r={date:$('date').value,classe:$('classe').value,groupe:+$('groupe').value};if(!r.date){$('notice').textContent='Choisissez une date.';return}const i=data.findIndex(x=>x.date===r.date&&x.classe===r.classe);if(i>=0)data[i]=r;else data.push(r);render();$('notice').textContent='✓ Séance enregistrée.';};
-window.editRow=i=>{const r=data[i];$('date').value=r.date;$('classe').value=r.classe;$('groupe').value=r.groupe;window.scrollTo({top:0,behavior:'smooth'});};window.deleteRow=i=>{if(confirm('Supprimer cette séance ?')){data.splice(i,1);render();}};
-$('export').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='groups.json';a.click();URL.revokeObjectURL(a.href);};render();
+const START='2026-09-21';
+const ranges=[['2026-10-18','2026-10-25'],['2026-12-06','2026-12-13'],['2027-01-24','2027-01-31'],['2027-03-21','2027-03-28'],['2027-05-09','2027-05-16']];
+const fixed=['2026-10-31','2026-11-06','2026-11-18','2027-01-01','2027-01-11','2027-01-14','2027-05-01'];
+const $=id=>document.getElementById(id), iso=d=>{const x=new Date(d);x.setHours(12,0,0,0);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`}, dt=s=>new Date(s+'T12:00:00');
+const baseHoliday=d=>fixed.includes(d)||ranges.some(([a,b])=>d>=a&&d<=b);
+let payload=JSON.parse(localStorage.getItem('groupsPayload')||'null')||{overrides:[],closedDates:[]};
+if(Array.isArray(JSON.parse(localStorage.getItem('groupsData')||'null')) && !payload.overrides.length) payload.overrides=JSON.parse(localStorage.getItem('groupsData'));
+function isClosed(d){return baseHoliday(d)||payload.closedDates.some(x=>x.date===d)}
+function autoGroup(classe,date){let count=0;for(let d=dt(START);d<=dt(date);d.setDate(d.getDate()+1)){const s=iso(d),dow=d.getDay();if(dow===0||s>date||isClosed(s)||!(weekly[dow]||[]).includes(classe))continue;count++;}return count%2?1:2}
+function session(date,classe){const dow=dt(date).getDay();if(dow===0||!(weekly[dow]||[]).includes(classe)||date<START||isClosed(date))return null;const ov=payload.overrides.find(x=>x.date===date&&x.classe===classe);return {date,classe,groupe:ov?+ov.groupe:autoGroup(classe,date),manual:!!ov};}
+classes.forEach(c=>$('classe').add(new Option(c,c))); $('date').value=iso(new Date()); $('closedDate').value=iso(new Date());
+function render(){
+ payload.overrides.sort((a,b)=>a.date.localeCompare(b.date)||a.classe.localeCompare(b.classe));
+ $('rows').innerHTML=payload.overrides.map((r,i)=>`<tr><td>${r.date}</td><td>${dayNames[dt(r.date).getDay()]}</td><td dir="rtl">${r.classe}</td><td><span class="group-pill g${r.groupe}">${r.groupe==1?'🟢 Groupe 1':'🔵 Groupe 2'}</span></td><td><button class="table-btn" onclick="editRow(${i})">Modifier</button><button class="table-btn danger" onclick="deleteRow(${i})">Supprimer</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Aucune modification manuelle.</td></tr>';
+ $('closedRows').innerHTML=payload.closedDates.sort((a,b)=>a.date.localeCompare(b.date)).map((r,i)=>`<tr><td>${r.date}</td><td>${r.reason||'Jour sans cours'}</td><td><button class="table-btn danger" onclick="deleteClosed(${i})">Supprimer</button></td></tr>`).join('')||'<tr><td colspan="3" class="empty">Aucun jour ajouté.</td></tr>';
+ const start=new Date();start.setHours(12,0,0,0);const end=new Date(start);end.setDate(end.getDate()+42);const all=[];for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1)){const s=iso(d);(weekly[d.getDay()]||[]).forEach(c=>{const r=session(s,c);if(r)all.push(r)})}
+ const groups={};all.forEach(r=>(groups[r.date]||=[]).push(r));
+ $('preview').innerHTML=Object.entries(groups).slice(0,28).map(([date,rs])=>`<div class="preview-item"><strong>${date} · ${dayNames[dt(date).getDay()]}</strong>${rs.map(r=>`<div>${r.classe} — <b>Groupe ${r.groupe}</b> ${r.manual?'<span class="auto-badge">Professeur</span>':'<span class="auto-badge">Automatique</span>'}</div>`).join('')}</div>`).join('')||'<div class="empty">Aucune séance à venir.</div>';
+ localStorage.setItem('groupsPayload',JSON.stringify(payload));localStorage.setItem('groupsData',JSON.stringify(payload.overrides));
+}
+$('save').onclick=()=>{const r={date:$('date').value,classe:$('classe').value,groupe:+$('groupe').value};if(!r.date){$('notice').textContent='Choisissez une date.';return}if(isClosed(r.date)){ $('notice').textContent='Cette date est marquée sans cours. Supprimez d’abord cette exception si une séance a finalement lieu.';return }const i=payload.overrides.findIndex(x=>x.date===r.date&&x.classe===r.classe);if(i>=0)payload.overrides[i]=r;else payload.overrides.push(r);render();$('notice').textContent='✓ Modification enregistrée.';};
+$('addClosed').onclick=()=>{const date=$('closedDate').value,reason=$('closedReason').value.trim();if(!date)return;const i=payload.closedDates.findIndex(x=>x.date===date);if(i>=0)payload.closedDates[i]={date,reason};else payload.closedDates.push({date,reason});payload.overrides=payload.overrides.filter(x=>x.date!==date);render();$('closedReason').value='';};
+window.editRow=i=>{const r=payload.overrides[i];$('date').value=r.date;$('classe').value=r.classe;$('groupe').value=r.groupe;document.querySelector('[data-tab="planning"]').click();window.scrollTo({top:0,behavior:'smooth'});};
+window.deleteRow=i=>{if(confirm('Supprimer cette modification ?')){payload.overrides.splice(i,1);render();}};
+window.deleteClosed=i=>{if(confirm('Supprimer ce jour sans cours ?')){payload.closedDates.splice(i,1);render();}};
+$('export').onclick=()=>{const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='groups.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);};
+document.querySelectorAll('.admin-tab').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.admin-tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.admin-panel').forEach(x=>x.hidden=true);btn.classList.add('active');$(btn.dataset.tab).hidden=false;});
+render();
 </script></body></html>
