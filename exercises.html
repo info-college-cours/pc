@@ -48,17 +48,17 @@
     <section class="question"><span class="question-number">4</span><div><h2>Un ordinateur permet principalement :</h2>
       <label><input type="radio" name="q4" value="a"> le traitement automatique des informations</label><label><input type="radio" name="q4" value="b"> uniquement l'affichage d'images</label><label><input type="radio" name="q4" value="c"> uniquement l'impression</label></div></section>
 
-    <section class="question"><span class="question-number">5</span><div><h2>Observe l’unité centrale. Les numéros indiquent les composants.</h2>
+    <section class="question"><span class="question-number">5</span><div><h2>Repère n°2 : sélectionne ci-dessous l’image qui correspond à ce composant.</h2>
       <div class="component-viewer">
         <img src="assets/images/unite-centrale-quiz-numerotee.jpg" alt="Unité centrale ouverte avec six repères numérotés, sans noms de composants">
       </div>
       <div class="component-strip" aria-label="Images des composants sans leurs noms">
-        <button type="button" class="component-tile" aria-label="Composant numéro 1"><img src="assets/images/composant-1-sans-nom.jpg" alt="Composant numéro 1"></button>
-        <button type="button" class="component-tile" aria-label="Composant numéro 2"><img src="assets/images/composant-2-sans-nom.jpg" alt="Composant numéro 2"></button>
-        <button type="button" class="component-tile" aria-label="Composant numéro 3"><img src="assets/images/composant-3-sans-nom.jpg" alt="Composant numéro 3"></button>
-        <button type="button" class="component-tile" aria-label="Composant numéro 4"><img src="assets/images/composant-4-sans-nom.jpg" alt="Composant numéro 4"></button>
-        <button type="button" class="component-tile" aria-label="Composant numéro 5"><img src="assets/images/composant-5-sans-nom.jpg" alt="Composant numéro 5"></button>
-        <button type="button" class="component-tile" aria-label="Composant numéro 6"><img src="assets/images/composant-6-sans-nom.jpg" alt="Composant numéro 6"></button>
+        <button type="button" class="component-tile" data-q5="1" aria-label="Image 1"><img src="assets/images/composant-1-sans-nom.jpg" alt="Image 1"><span class="tile-number">1</span></button>
+        <button type="button" class="component-tile" data-q5="2" aria-label="Image 2"><img src="assets/images/composant-2-sans-nom.jpg" alt="Image 2"><span class="tile-number">2</span></button>
+        <button type="button" class="component-tile" data-q5="3" aria-label="Image 3"><img src="assets/images/composant-3-sans-nom.jpg" alt="Image 3"><span class="tile-number">3</span></button>
+        <button type="button" class="component-tile" data-q5="4" aria-label="Image 4"><img src="assets/images/composant-4-sans-nom.jpg" alt="Image 4"><span class="tile-number">4</span></button>
+        <button type="button" class="component-tile" data-q5="5" aria-label="Image 5"><img src="assets/images/composant-5-sans-nom.jpg" alt="Image 5"><span class="tile-number">5</span></button>
+        <button type="button" class="component-tile" data-q5="6" aria-label="Image 6"><img src="assets/images/composant-6-sans-nom.jpg" alt="Image 6"><span class="tile-number">6</span></button>
       </div>
     </div></section>
 
@@ -114,47 +114,6 @@
   </form>
 </main>
 <footer class="footer">© 2026 — Espace Informatique</footer>
-<script src="js/app.js"></script>
-<script>
-const answers = {
-  q1:'b', q2:'a', q3:'b', q4:'a', q6:'2', q7:'3', q8:'6', q9:'4',
-  q10:'a', q11:'b', q12:'C', q13:'a', q14:'v', q15:'a', q16:'b', q17:'a', q19:'b', q20:'v'
-};
-const multiAnswers = {q18:['hardware','software']};
-
-function sameSet(values, expected){
-  return values.length === expected.length && values.every(v => expected.includes(v));
-}
-
-document.getElementById('quiz').addEventListener('submit', function(e){
-  e.preventDefault();
-  let score = 0;
-  Object.entries(answers).forEach(([q, answer]) => {
-    const selected = document.querySelector(`input[name="${q}"]:checked`);
-    if(selected && selected.value === answer) score++;
-  });
-  Object.entries(multiAnswers).forEach(([q, expected]) => {
-    const values = [...document.querySelectorAll(`input[name="${q}"]:checked`)].map(x=>x.value).sort();
-    if(sameSet(values, [...expected].sort())) score++;
-  });
-  const box = document.getElementById('quizResult');
-  box.hidden = false;
-  const percent = Math.round(score / 20 * 100);
-  let message = 'Relis la leçon et réessaie.';
-  if(score === 20) message = 'Excellent ! Toutes les réponses sont correctes 🎉';
-  else if(score >= 16) message = 'Très bien ! Quelques notions restent à revoir.';
-  else if(score >= 12) message = 'Bon travail ! Continue à t’entraîner.';
-  box.innerHTML = `<strong>${score}/20</strong><span>${percent}% — ${message}</span>`;
-  box.className = 'quiz-result ' + (score === 20 ? 'success' : 'partial');
-  box.scrollIntoView({behavior:'smooth', block:'nearest'});
-});
-
-document.getElementById('resetQuiz').addEventListener('click', function(){
-  document.getElementById('quiz').reset();
-  const box = document.getElementById('quizResult');
-  box.hidden = true;
-  window.scrollTo({top:0, behavior:'smooth'});
-});
-</script>
+<script src="js/app.js?v=17"></script>
 </body>
 </html>
