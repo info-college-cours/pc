@@ -6,14 +6,13 @@
   <title>Les exercices — Informatique</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .exercise-image{width:100%;max-width:900px;display:block;margin:14px auto 18px;border-radius:16px;border:1px solid #dbe3ee;background:#fff}
+    .exercise-image{width:100%;height:auto;max-width:900px;max-height:none;object-fit:contain;display:block;margin:14px auto 18px;border-radius:16px;border:1px solid #dbe3ee;background:#fff}
     .component-viewer{max-width:980px;margin:14px auto 10px;border:1px solid #dbe3ee;border-radius:18px;background:#fff;padding:10px;box-shadow:0 8px 22px rgba(31,73,125,.08)}
     .component-viewer img{width:100%;display:block;border-radius:12px}
     .component-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:980px;margin:10px auto 12px}
     .component-tile{border:2px solid #e3e9f2;border-radius:14px;background:#f8fafc;padding:5px;cursor:pointer;transition:.18s;box-shadow:0 3px 10px rgba(31,73,125,.05)}
     .component-tile:hover,.component-tile:focus{transform:translateY(-2px);border-color:#2563eb;outline:none}
-    .component-tile img{width:100%;height:88px;object-fit:cover;object-position:center;border-radius:9px;display:block}
-    .tile-number{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;background:#2563eb;color:#fff;font-weight:900;margin:4px auto 1px}
+    .component-tile img{width:100%;height:88px;object-fit:contain;object-position:center;border-radius:9px;display:block;background:#fff}
     .component-name{min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;margin:8px auto 2px;max-width:760px;padding:9px 14px;border-radius:12px;background:#eef6ff;color:#123b78;font-weight:800}
     .image-note{font-size:13px;color:#5b677a;text-align:center;margin:4px 0 8px}
     @media(max-width:760px){.component-strip{grid-template-columns:repeat(3,1fr)}.component-tile img{height:72px}}
@@ -23,6 +22,20 @@
     .quiz-result{margin-top:16px}
     select.quiz-select{width:100%;max-width:420px;padding:10px;border:1px solid #dbe3ee;border-radius:10px;background:#fff}
     .tip{background:#eef6ff;border-left:4px solid #2563eb;padding:12px 14px;border-radius:10px;margin:0 0 16px}
+
+    /* Exercice glisser-déposer : périphériques */
+    .dnd-exercise{margin-top:34px;background:#fff;border:1px solid #dbe3ee;border-radius:20px;padding:20px;box-shadow:0 10px 28px rgba(31,73,125,.08)}
+    .dnd-head h2{margin:4px 0 8px;color:#123b78}.dnd-help{background:#eef6ff;border-left:4px solid #2563eb;padding:12px 14px;border-radius:10px;margin:12px 0 16px}
+    .device-bank{display:grid;grid-template-columns:repeat(5,minmax(110px,1fr));gap:10px;margin:14px 0 18px}
+    .device-card{border:2px solid #dbe7f5;border-radius:14px;background:#fff;padding:8px;cursor:grab;text-align:center;touch-action:manipulation;user-select:none;transition:.18s;min-width:0}
+    .device-card:hover,.device-card.selected{border-color:#2563eb;box-shadow:0 5px 15px rgba(37,99,235,.18);transform:translateY(-2px)}
+    .device-card img{width:100%;height:92px;object-fit:contain;border-radius:9px;background:#f8fafc;pointer-events:none}.device-card strong{display:block;margin-top:6px;color:#183b6b;font-size:14px}
+    .drop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.drop-zone{min-height:190px;border:2px dashed #9bb9df;border-radius:16px;padding:10px;background:#f8fbff;transition:.18s}.drop-zone.dragover{background:#eaf4ff;border-color:#2563eb}
+    .drop-zone h3{text-align:center;margin:2px 0 10px;color:#123b78;font-size:17px}.drop-items{display:grid;grid-template-columns:repeat(2,minmax(80px,1fr));gap:7px;min-height:120px}
+    .drop-items .device-card{padding:5px}.drop-items .device-card img{height:65px}.drop-items .device-card strong{font-size:12px}
+    .device-card.correct{border-color:#16a34a;background:#ecfdf3}.device-card.wrong{border-color:#dc2626;background:#fff1f2}
+    .dnd-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}.dnd-score{font-weight:900;font-size:20px;color:#123b78;margin-left:auto}.dnd-message{width:100%;font-weight:700;margin-top:4px}
+    @media(max-width:760px){.device-bank{grid-template-columns:repeat(2,1fr)}.drop-grid{grid-template-columns:1fr}.drop-zone{min-height:140px}.drop-items{grid-template-columns:repeat(3,1fr)}.device-card img{height:78px}.dnd-score{margin-left:0;width:100%}}
   </style>
 </head>
 <body>
@@ -30,6 +43,15 @@
   <a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a>
   <a class="back-link" href="index.html">← Accueil</a>
 </header>
+<nav class="site-nav" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="index.html"><span aria-hidden="true">⌂</span> Accueil</a>
+    <a href="lessons.html"><span aria-hidden="true">▤</span> Cours</a>
+    <a href="exercises.html"><span aria-hidden="true">✎</span> Exercices</a>
+    <a href="groups.html"><span aria-hidden="true">♧</span> Groupes</a>
+  </div>
+</nav>
+
 <main class="container page">
   <div class="page-heading">
     <p class="eyebrow">📝 Exercices interactifs</p>
@@ -53,14 +75,14 @@
         <img src="assets/images/unite-centrale-quiz-numerotee.jpg" alt="Unité centrale ouverte avec six repères numérotés, sans noms de composants">
       </div>
       <div class="component-strip" aria-label="Images des composants sans leurs noms">
-        <button type="button" class="component-tile" data-q5="1" aria-label="Image 1"><img src="assets/images/composant-1-sans-nom.jpg" alt="Image 1"><span class="tile-number">1</span></button>
-        <button type="button" class="component-tile" data-q5="2" aria-label="Image 2"><img src="assets/images/composant-2-sans-nom.jpg" alt="Image 2"><span class="tile-number">2</span></button>
-        <button type="button" class="component-tile" data-q5="3" aria-label="Image 3"><img src="assets/images/composant-3-sans-nom.jpg" alt="Image 3"><span class="tile-number">3</span></button>
-        <button type="button" class="component-tile" data-q5="4" aria-label="Image 4"><img src="assets/images/composant-4-sans-nom.jpg" alt="Image 4"><span class="tile-number">4</span></button>
-        <button type="button" class="component-tile" data-q5="5" aria-label="Image 5"><img src="assets/images/composant-5-sans-nom.jpg" alt="Image 5"><span class="tile-number">5</span></button>
-        <button type="button" class="component-tile" data-q5="6" aria-label="Image 6"><img src="assets/images/composant-6-sans-nom.jpg" alt="Image 6"><span class="tile-number">6</span></button>
-      </div>
-    </div></section>
+  <button type="button" class="component-tile" data-q5="1" aria-label="Image 1"><img src="assets/images/composant-1-sans-nom.jpg" alt="Image 1"></button>
+  <button type="button" class="component-tile" data-q5="2" aria-label="Image 2"><img src="assets/images/composant-2-sans-nom.jpg" alt="Image 2"></button>
+  <button type="button" class="component-tile" data-q5="3" aria-label="Image 3"><img src="assets/images/composant-3-sans-nom.jpg" alt="Image 3"></button>
+  <button type="button" class="component-tile" data-q5="4" aria-label="Image 4"><img src="assets/images/composant-4-sans-nom.jpg" alt="Image 4"></button>
+  <button type="button" class="component-tile" data-q5="5" aria-label="Image 5"><img src="assets/images/composant-5-sans-nom.jpg" alt="Image 5"></button>
+  <button type="button" class="component-tile" data-q5="6" aria-label="Image 6"><img src="assets/images/composant-6-sans-nom.jpg" alt="Image 6"></button>
+</div>
+</div></section>
 
     <section class="question"><span class="question-number">6</span><div><h2>Quel numéro désigne le processeur (CPU) ?</h2>
       <div class="choice-grid"><label><input type="radio" name="q6" value="1"> 1</label><label><input type="radio" name="q6" value="2"> 2</label><label><input type="radio" name="q6" value="3"> 3</label><label><input type="radio" name="q6" value="4"> 4</label></div></div></section>
@@ -112,8 +134,56 @@
     <button class="button secondary" type="button" id="resetQuiz">↻ Recommencer</button>
     <div id="quizResult" class="quiz-result" hidden></div>
   </form>
+
+  <section class="dnd-exercise" id="peripheriquesDnd">
+    <div class="dnd-head">
+      <p class="eyebrow">🧩 Nouvel exercice</p>
+      <h2>Les périphériques d’un ordinateur</h2>
+      <p>Classe chaque périphérique dans la bonne catégorie.</p>
+    </div>
+    <div class="dnd-help">💡 Sur ordinateur : glisse l’image. Sur téléphone/tablette : touche un périphérique puis touche la catégorie choisie.</div>
+    <div class="device-bank" id="deviceBank" aria-label="Périphériques à classer">
+      <div class="device-card" draggable="true" tabindex="0" data-id="clavier" data-answer="entree"><img src="assets/images/peripheriques-dnd/clavier.jpg" alt="Clavier"><strong>Clavier</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="souris" data-answer="entree"><img src="assets/images/peripheriques-dnd/souris.jpg" alt="Souris"><strong>Souris</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="microphone" data-answer="entree"><img src="assets/images/peripheriques-dnd/microphone.jpg" alt="Microphone"><strong>Microphone</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="webcam" data-answer="entree"><img src="assets/images/peripheriques-dnd/webcam.jpg" alt="Webcam"><strong>Webcam</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="ecran" data-answer="sortie"><img src="assets/images/peripheriques-dnd/ecran.jpg" alt="Écran"><strong>Écran</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="imprimante" data-answer="sortie"><img src="assets/images/peripheriques-dnd/imprimante.jpg" alt="Imprimante"><strong>Imprimante</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="haut-parleurs" data-answer="sortie"><img src="assets/images/peripheriques-dnd/haut-parleurs.jpg" alt="Haut-parleurs"><strong>Haut-parleurs</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="casque" data-answer="sortie"><img src="assets/images/peripheriques-dnd/casque.jpg" alt="Casque"><strong>Casque</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="cle-usb" data-answer="stockage"><img src="assets/images/peripheriques-dnd/cle-usb.jpg" alt="Clé USB"><strong>Clé USB</strong></div>
+      <div class="device-card" draggable="true" tabindex="0" data-id="disque-externe" data-answer="stockage"><img src="assets/images/peripheriques-dnd/disque-externe.jpg" alt="Disque de stockage"><strong>Disque de stockage</strong></div>
+    </div>
+    <div class="drop-grid">
+      <div class="drop-zone" data-zone="entree" tabindex="0"><h3>⌨️ Périphériques d’entrée</h3><div class="drop-items"></div></div>
+      <div class="drop-zone" data-zone="sortie" tabindex="0"><h3>🖥️ Périphériques de sortie</h3><div class="drop-items"></div></div>
+      <div class="drop-zone" data-zone="stockage" tabindex="0"><h3>💾 Périphériques de stockage</h3><div class="drop-items"></div></div>
+    </div>
+    <div class="dnd-actions">
+      <button class="button primary" type="button" id="validateDnd">✓ Valider</button>
+      <button class="button secondary" type="button" id="resetDnd">↻ Réinitialiser</button>
+      <div class="dnd-score" id="dndScore" aria-live="polite">Score : —/10</div>
+      <div class="dnd-message" id="dndMessage" aria-live="polite"></div>
+    </div>
+  </section>
 </main>
 <footer class="footer">© 2026 — Espace Informatique</footer>
 <script src="js/app.js?v=17"></script>
+
+<script>
+(function(){
+ const root=document.getElementById('peripheriquesDnd'); if(!root) return;
+ const bank=document.getElementById('deviceBank'), cards=[...root.querySelectorAll('.device-card')], zones=[...root.querySelectorAll('.drop-zone')];
+ const score=document.getElementById('dndScore'), msg=document.getElementById('dndMessage'); let selected=null, dragged=null;
+ function clearMarks(){cards.forEach(c=>c.classList.remove('correct','wrong')); score.textContent='Score : —/10'; msg.textContent='';}
+ function selectCard(c){cards.forEach(x=>x.classList.remove('selected')); selected=c; if(c)c.classList.add('selected');}
+ function move(c,z){if(!c||!z)return; z.querySelector('.drop-items').appendChild(c); selectCard(null); clearMarks();}
+ cards.forEach(c=>{c.addEventListener('dragstart',()=>{dragged=c}); c.addEventListener('dragend',()=>{dragged=null}); c.addEventListener('click',()=>selectCard(selected===c?null:c)); c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectCard(selected===c?null:c)}})});
+ zones.forEach(z=>{z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('dragover')});z.addEventListener('dragleave',()=>z.classList.remove('dragover'));z.addEventListener('drop',e=>{e.preventDefault();z.classList.remove('dragover');move(dragged,z)});z.addEventListener('click',e=>{if(selected&&!e.target.closest('.device-card'))move(selected,z)});z.addEventListener('keydown',e=>{if(selected&&(e.key==='Enter'||e.key===' ')){e.preventDefault();move(selected,z)}})});
+ bank.addEventListener('dragover',e=>e.preventDefault()); bank.addEventListener('drop',e=>{e.preventDefault();if(dragged){bank.appendChild(dragged);clearMarks()}});
+ document.getElementById('validateDnd').addEventListener('click',()=>{let n=0,placed=0;cards.forEach(c=>{const z=c.closest('.drop-zone');c.classList.remove('correct','wrong');if(z){placed++;if(z.dataset.zone===c.dataset.answer){n++;c.classList.add('correct')}else c.classList.add('wrong')}});score.textContent='Score : '+n+'/10';msg.textContent=placed<10?'Place les 10 périphériques avant de valider. Les éléments déjà placés ont été corrigés.':(n===10?'Excellent ! Toutes les réponses sont correctes.':'Vert = correct, rouge = à déplacer. Corrige puis valide de nouveau.');});
+ document.getElementById('resetDnd').addEventListener('click',()=>{cards.forEach(c=>bank.appendChild(c));selectCard(null);clearMarks();});
+})();
+</script>
 </body>
 </html>
