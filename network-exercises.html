@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#14213d">
+  <title>Exercices — Unité 2 : Réseau informatique</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a>
+  <div class="topbar-actions"><a class="back-link" href="exercises.html">← Exercices</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Basculer le mode sombre" aria-pressed="false">🌙</button></div>
+</header>
+<nav class="site-nav" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="index.html"><span aria-hidden="true">⌂</span> Accueil</a>
+    <a href="lessons.html"><span aria-hidden="true">▤</span> Cours</a>
+    <a href="exercises.html"><span aria-hidden="true">✎</span> Exercices</a>
+    <a href="groups.html"><span aria-hidden="true">♧</span> Groupes</a>
+  </div>
+</nav>
+
+<main id="contenu" class="container page">
+  <div class="page-heading">
+    <p class="eyebrow">📝 Exercices</p>
+    <h1>Unité 2 — Réseau informatique</h1>
+    <p>Activités variées pour vérifier les notions étudiées dans le cours.</p>
+  </div>
+
+  <section class="exercise-units" aria-label="Choix de l'unité">
+    <a class="exercise-unit-card" href="exercises.html">
+      <span class="unit-number">01</span>
+      <span><strong>Unité 1 — Système informatique</strong><small>Exercices existants</small></span>
+      <span>→</span>
+    </a>
+    <a class="exercise-unit-card active" href="network-exercises.html">
+      <span class="unit-number">02</span>
+      <span><strong>Unité 2 — Réseau informatique</strong><small>Exercices de réseau</small></span>
+      <span>→</span>
+    </a>
+  </section>
+
+  <div class="tip">💡 Lis chaque consigne et valide tes réponses à la fin pour obtenir ta note sur 20.</div>
+
+  <form id="networkQuiz" class="quiz network-quiz">
+    <section class="question network-question">
+      <span class="question-number">1</span><div>
+        <h2>QCM — Qu'est-ce qu'un réseau informatique ?</h2>
+        <label><input type="radio" name="n1" value="a"> Un seul ordinateur utilisé sans connexion.</label>
+        <label><input type="radio" name="n1" value="b"> Un ensemble d'équipements reliés entre eux pour échanger des données.</label>
+        <label><input type="radio" name="n1" value="c"> Un logiciel installé sur un ordinateur.</label>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">2</span><div>
+        <h2>QCM — Quel support correspond à une liaison filaire ?</h2>
+        <label><input type="radio" name="n2" value="a"> Câble Ethernet / RJ45</label>
+        <label><input type="radio" name="n2" value="b"> Ondes Wi-Fi</label>
+        <label><input type="radio" name="n2" value="c"> Bluetooth uniquement</label>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">3</span><div>
+        <h2>QCM — Quel équipement relie plusieurs appareils dans un réseau local filaire ?</h2>
+        <label><input type="radio" name="n3" value="a"> Switch</label>
+        <label><input type="radio" name="n3" value="b"> Routeur</label>
+        <label><input type="radio" name="n3" value="c"> Écran</label>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">4</span><div>
+        <h2>QCM — Quel équipement permet de relier des réseaux différents ?</h2>
+        <label><input type="radio" name="n4" value="a"> Carte réseau</label>
+        <label><input type="radio" name="n4" value="b"> Routeur</label>
+        <label><input type="radio" name="n4" value="c"> Clavier</label>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">5</span><div>
+        <h2>Vrai / Faux — Une carte réseau permet à un appareil de se connecter à un réseau.</h2>
+        <label><input type="radio" name="n5" value="v"> Vrai</label>
+        <label><input type="radio" name="n5" value="f"> Faux</label>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">6</span><div>
+        <h2>Vrai / Faux — Un LAN couvre généralement une zone limitée comme une salle, une maison ou une école.</h2>
+        <label><input type="radio" name="n6" value="v"> Vrai</label>
+        <label><input type="radio" name="n6" value="f"> Faux</label>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">7</span><div>
+        <h2>Vrai / Faux — Un WAN est limité à une seule salle informatique.</h2>
+        <label><input type="radio" name="n7" value="v"> Vrai</label>
+        <label><input type="radio" name="n7" value="f"> Faux</label>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">8</span><div>
+        <h2>Association — Choisis le rôle correspondant à chaque équipement.</h2>
+        <div class="matching-grid">
+          <label>Carte réseau
+            <select name="n8a"><option value="">Choisir…</option><option value="connexion">Permet à l'appareil de se connecter au réseau</option><option value="local">Relie plusieurs appareils d'un même réseau</option><option value="reseaux">Relie des réseaux différents</option>
+            </select>
+          </label>
+          <label>Switch
+            <select name="n8b"><option value="">Choisir…</option><option value="connexion">Permet à l'appareil de se connecter au réseau</option><option value="local">Relie plusieurs appareils d'un même réseau</option><option value="reseaux">Relie des réseaux différents</option>
+            </select>
+          </label>
+          <label>Routeur
+            <select name="n8c"><option value="">Choisir…</option><option value="connexion">Permet à l'appareil de se connecter au réseau</option><option value="local">Relie plusieurs appareils d'un même réseau</option><option value="reseaux">Relie des réseaux différents</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">9</span><div>
+        <h2>Classification — LAN, MAN ou WAN ?</h2>
+        <div class="matching-grid">
+          <label>Réseau de la salle informatique d'un collège
+            <select name="n9a"><option value="">Choisir…</option><option>LAN</option><option>MAN</option><option>WAN</option></select>
+          </label>
+          <label>Réseau reliant plusieurs établissements dans une ville
+            <select name="n9b"><option value="">Choisir…</option><option>LAN</option><option>MAN</option><option>WAN</option></select>
+          </label>
+          <label>Internet
+            <select name="n9c"><option value="">Choisir…</option><option>LAN</option><option>MAN</option><option>WAN</option></select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">10</span><div>
+        <h2>Identifier le matériel réseau.</h2>
+        <p>Choisis l'équipement adapté à chaque situation.</p>
+        <div class="matching-grid">
+          <label>Un ordinateur doit être connecté au réseau.
+            <select name="n10a"><option value="">Choisir…</option><option>Carte réseau</option><option>Switch</option><option>Routeur</option></select>
+          </label>
+          <label>Plusieurs ordinateurs doivent être reliés dans un même réseau filaire.
+            <select name="n10b"><option value="">Choisir…</option><option>Carte réseau</option><option>Switch</option><option>Routeur</option></select>
+          </label>
+          <label>Un réseau local doit communiquer avec un autre réseau.
+            <select name="n10c"><option value="">Choisir…</option><option>Carte réseau</option><option>Switch</option><option>Routeur</option></select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">11</span><div>
+        <h2>Compléter le schéma.</h2>
+        <p>Complète chaque liaison avec le mot qui convient.</p>
+        <div class="network-schema">
+          <div class="schema-box">Ordinateur</div>
+          <span>→</span>
+          <select name="n11a"><option value="">?</option><option>Carte réseau</option><option>Switch</option><option>Routeur</option></select>
+          <span>→</span>
+          <select name="n11b"><option value="">?</option><option>Câble Ethernet / RJ45</option><option>Wi-Fi</option><option>Écran</option></select>
+          <span>→</span>
+          <div class="schema-box">Réseau</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">12</span><div>
+        <h2>Situation-problème.</h2>
+        <p>Dans un collège, plusieurs ordinateurs de la salle informatique doivent échanger des fichiers et utiliser la même imprimante. Ils sont reliés par des câbles Ethernet.</p>
+        <div class="matching-grid">
+          <label>Quel type de réseau est adapté ?
+            <select name="n12a"><option value="">Choisir…</option><option>LAN</option><option>MAN</option><option>WAN</option></select>
+          </label>
+          <label>Quel équipement peut relier les ordinateurs entre eux ?
+            <select name="n12b"><option value="">Choisir…</option><option>Switch</option><option>Routeur</option><option>Carte réseau</option></select>
+          </label>
+          <label>Quel avantage est illustré ?
+            <select name="n12c"><option value="">Choisir…</option><option>Échange de données et partage de ressources</option><option>Augmentation de la taille de l'écran</option><option>Remplacement du système d'exploitation</option></select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="question network-question">
+      <span class="question-number">13</span><div>
+        <h2>Exercice bilan.</h2>
+        <p>Associe chaque proposition à la bonne réponse.</p>
+        <div class="matching-grid">
+          <label>Le câble Ethernet / RJ45 est…
+            <select name="n13a"><option value="">Choisir…</option><option>un support de transmission filaire</option><option>un équipement d'interconnexion</option><option>un type de réseau</option></select>
+          </label>
+          <label>Le MAN correspond…
+            <select name="n13b"><option value="">Choisir…</option><option>à un réseau local</option><option>à un réseau métropolitain</option><option>à un réseau étendu</option></select>
+          </label>
+          <label>Le réseau informatique permet notamment…
+            <select name="n13c"><option value="">Choisir…</option><option>d'échanger des données</option><option>de supprimer les réseaux</option><option>de remplacer tous les périphériques</option></select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <button class="button primary" type="submit">✓ Valider mes réponses</button>
+    <button class="button secondary" type="button" id="resetNetworkQuiz">↻ Recommencer</button>
+    <div id="networkResult" class="quiz-result" hidden aria-live="polite"></div>
+  </form>
+</main>
+<footer class="footer">© 2026 — Espace Informatique</footer>
+
+<script>
+(function(){
+  const quiz=document.getElementById('networkQuiz');
+  if(!quiz) return;
+  const answers={
+    n1:'b',n2:'a',n3:'a',n4:'b',n5:'v',n6:'v',n7:'f',
+    n8a:'connexion',n8b:'local',n8c:'reseaux',
+    n9a:'LAN',n9b:'MAN',n9c:'WAN',
+    n10a:'Carte réseau',n10b:'Switch',n10c:'Routeur',
+    n11a:'Carte réseau',n11b:'Câble Ethernet / RJ45',
+    n12a:'LAN',n12b:'Switch',n12c:'Échange de données et partage de ressources',
+    n13a:'un support de transmission filaire',n13b:'à un réseau métropolitain',n13c:"d'échanger des données"
+  };
+  const fields=Object.keys(answers);
+  const bar=document.createElement('div');
+  bar.className='quiz-progress';
+  bar.innerHTML='<div class="quiz-progress-fill"></div><span class="quiz-progress-text" role="status"></span>';
+  quiz.parentNode.insertBefore(bar,quiz);
+  const fill=bar.querySelector('.quiz-progress-fill'),txt=bar.querySelector('.quiz-progress-text');
+  function values(){
+    const out={};
+    fields.forEach(k=>{
+      const el=quiz.querySelector('[name="'+k+'"]');
+      if(!el) return;
+      out[k]=el.type==='radio' ? (quiz.querySelector('[name="'+k+'"]:checked')?.value||'') : el.value;
+    });
+    return out;
+  }
+  function update(){
+    const v=values(), done=fields.filter(k=>v[k]).length;
+    fill.style.width=(done/fields.length*100)+'%';
+    txt.textContent=done+' / '+fields.length+' réponses renseignées';
+  }
+  quiz.addEventListener('change',update);
+  function feedback(field,ok){
+    const el=quiz.querySelector('[name="'+field+'"]');
+    if(!el) return;
+    const q=el.closest('.network-question');
+    if(q) q.classList.toggle('answer-ok',ok), q.classList.toggle('answer-wrong',!ok);
+  }
+  quiz.addEventListener('submit',e=>{
+    e.preventDefault();
+    const v=values(); let score=0;
+    fields.forEach(k=>{const ok=v[k]===answers[k];if(ok)score++;feedback(k,ok);});
+    const result=document.getElementById('networkResult');
+    result.hidden=false;
+    const note=Math.round(score/fields.length*20);
+    let msg=note===20?'Excellent ! Toutes les réponses sont correctes 🎉':note>=16?'Très bien ! Quelques réponses sont à revoir.':note>=10?'Bon travail ! Relis les notions du cours.':'Reprends le cours puis essaie de nouveau.';
+    result.innerHTML='<strong>Note : '+note+'/20</strong><span>'+score+' / '+fields.length+' réponses correctes — '+msg+'</span>';
+    result.className='quiz-result '+(note===20?'success':'partial');
+    result.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+  document.getElementById('resetNetworkQuiz').addEventListener('click',()=>{
+    quiz.reset(); quiz.querySelectorAll('.answer-ok,.answer-wrong').forEach(q=>q.classList.remove('answer-ok','answer-wrong'));
+    const r=document.getElementById('networkResult');r.hidden=true;update();window.scrollTo({top:0,behavior:'smooth'});
+  });
+  update();
+})();
+</script>
+<script src="js/enhancements.js" defer></script>
+</body>
+</html>

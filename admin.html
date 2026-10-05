@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Gestion des groupes — Professeur</title><link rel="stylesheet" href="css/style.css">
-<style>
-.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.admin-tab{border:1px solid #dbe3ee;background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:800}.admin-tab.active{background:#2563eb;color:#fff;border-color:#2563eb}.admin-panel[hidden]{display:none}.auto-badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1555a0;font-weight:800;font-size:12px}.closed-badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#fff1f2;color:#a11a2b;font-weight:800;font-size:12px}.mini-note{font-size:13px;color:#64748b;margin-top:7px}.preview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.preview-item{border:1px solid #e2e8f0;border-radius:12px;padding:12px;background:#fafcff}.preview-item strong{display:block;margin-bottom:5px}.form-actions{display:flex;gap:8px;flex-wrap:wrap}.table-btn.small{padding:6px 9px;font-size:12px}
-</style></head><body>
-<header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">⚙️</span><span>Gestion des groupes</span></a><a class="back-link" href="groups.html">← Vue élève</a></header>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#14213d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>💻</text></svg>">
+  <meta property="og:title" content="Gestion des groupes — Professeur">
+  <meta property="og:description" content="Espace professeur : gestion du planning et des groupes.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR"><title>Gestion des groupes — Professeur</title><link rel="stylesheet" href="css/style.css">
+</head><body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">⚙️</span><span>Gestion des groupes</span></a><div class="topbar-actions"><a class="back-link" href="groups.html">← Vue élève</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Basculer le mode sombre" aria-pressed="false">🌙</button></div></header>
 <nav class="site-nav" aria-label="Navigation principale">
   <div class="nav-inner">
     <a href="index.html"><span aria-hidden="true">⌂</span> Accueil</a>
@@ -13,7 +18,7 @@
   </div>
 </nav>
 
-<main class="container page">
+<main id="contenu" class="container page">
 <div class="page-heading"><p class="eyebrow">Espace professeur</p><h1>⚙️ Gestion du planning</h1><p>Le système alterne automatiquement les groupes. Vous intervenez seulement en cas de changement réel.</p></div>
 <section class="admin-card">
   <div class="admin-tabs"><button class="admin-tab active" data-tab="planning">🔄 Planning</button><button class="admin-tab" data-tab="closed">🚫 Jours sans cours</button></div>
@@ -35,8 +40,8 @@
 <section class="admin-card help"><h2>📤 Après modification</h2><p>1. Enregistrez vos exceptions ici. 2. Cliquez sur « Exporter groups.json ». 3. Remplacez le fichier <strong>data/groups.json</strong> sur GitHub Pages. Les élèves verront alors les mêmes exceptions, tandis que le reste du planning reste automatique.</p></section>
 </main><footer class="footer">Page professeur — non affichée dans le menu élève</footer>
 <script>
-const classes=['الثالثة 1','الثالثة 2','الثالثة 3','الثالثة 4','الثالثة 5','الثالثة 6','الثالثة 7','الثالثة 8','الثالثة 9','الثالثة 10','الثالثة 11'];
-const weekly={1:['الثالثة 4','الثالثة 6'],2:['الثالثة 7','الثالثة 5'],3:['الثالثة 3','الثالثة 2'],4:['الثالثة 10','الثالثة 1'],5:['الثالثة 8'],6:['الثالثة 11','الثالثة 9']};
+const classes=['Troisième 1','Troisième 2','Troisième 3','Troisième 4','Troisième 5','Troisième 6','Troisième 7','Troisième 8','Troisième 9','Troisième 10','Troisième 11'];
+const weekly={1:['Troisième 4','Troisième 6'],2:['Troisième 7','Troisième 5'],3:['Troisième 3','Troisième 2'],4:['Troisième 10','Troisième 1'],5:['Troisième 8'],6:['Troisième 11','Troisième 9']};
 const dayNames=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
 const START='2026-09-21';
 const ranges=[['2026-10-18','2026-10-25'],['2026-12-06','2026-12-13'],['2027-01-24','2027-01-31'],['2027-03-21','2027-03-28'],['2027-05-09','2027-05-16']];
@@ -51,7 +56,7 @@ function session(date,classe){const dow=dt(date).getDay();if(dow===0||!(weekly[d
 classes.forEach(c=>$('classe').add(new Option(c,c))); $('date').value=iso(new Date()); $('closedDate').value=iso(new Date());
 function render(){
  payload.overrides.sort((a,b)=>a.date.localeCompare(b.date)||a.classe.localeCompare(b.classe));
- $('rows').innerHTML=payload.overrides.map((r,i)=>`<tr><td>${r.date}</td><td>${dayNames[dt(r.date).getDay()]}</td><td dir="rtl">${r.classe}</td><td><span class="group-pill g${r.groupe}">${r.groupe==1?'🟢 Groupe 1':'🔵 Groupe 2'}</span></td><td><button class="table-btn" onclick="editRow(${i})">Modifier</button><button class="table-btn danger" onclick="deleteRow(${i})">Supprimer</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Aucune modification manuelle.</td></tr>';
+ $('rows').innerHTML=payload.overrides.map((r,i)=>`<tr><td>${r.date}</td><td>${dayNames[dt(r.date).getDay()]}</td><td >${r.classe}</td><td><span class="group-pill g${r.groupe}">${r.groupe==1?'🟢 Groupe 1':'🔵 Groupe 2'}</span></td><td><button class="table-btn" onclick="editRow(${i})">Modifier</button><button class="table-btn danger" onclick="deleteRow(${i})">Supprimer</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Aucune modification manuelle.</td></tr>';
  $('closedRows').innerHTML=payload.closedDates.sort((a,b)=>a.date.localeCompare(b.date)).map((r,i)=>`<tr><td>${r.date}</td><td>${r.reason||'Jour sans cours'}</td><td><button class="table-btn danger" onclick="deleteClosed(${i})">Supprimer</button></td></tr>`).join('')||'<tr><td colspan="3" class="empty">Aucun jour ajouté.</td></tr>';
  const start=new Date();start.setHours(12,0,0,0);const end=new Date(start);end.setDate(end.getDate()+42);const all=[];for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1)){const s=iso(d);(weekly[d.getDay()]||[]).forEach(c=>{const r=session(s,c);if(r)all.push(r)})}
  const groups={};all.forEach(r=>(groups[r.date]||=[]).push(r));
@@ -66,4 +71,5 @@ window.deleteClosed=i=>{if(confirm('Supprimer ce jour sans cours ?')){payload.cl
 $('export').onclick=()=>{const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='groups.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);};
 document.querySelectorAll('.admin-tab').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.admin-tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.admin-panel').forEach(x=>x.hidden=true);btn.classList.add('active');$(btn.dataset.tab).hidden=false;});
 render();
-</script></body></html>
+</script><script src="js/enhancements.js" defer></script>
+</body></html>

@@ -3,45 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#14213d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>💻</text></svg>">
+  <meta property="og:title" content="Les exercices — Informatique">
+  <meta property="og:description" content="20 exercices interactifs corrigés : composants de l'unité centrale et périphériques.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
   <title>Les exercices — Informatique</title>
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .exercise-image{width:100%;height:auto;max-width:900px;max-height:none;object-fit:contain;display:block;margin:14px auto 18px;border-radius:16px;border:1px solid #dbe3ee;background:#fff}
-    .component-viewer{max-width:980px;margin:14px auto 10px;border:1px solid #dbe3ee;border-radius:18px;background:#fff;padding:10px;box-shadow:0 8px 22px rgba(31,73,125,.08)}
-    .component-viewer img{width:100%;display:block;border-radius:12px}
-    .component-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:980px;margin:10px auto 12px}
-    .component-tile{border:2px solid #e3e9f2;border-radius:14px;background:#f8fafc;padding:5px;cursor:pointer;transition:.18s;box-shadow:0 3px 10px rgba(31,73,125,.05)}
-    .component-tile:hover,.component-tile:focus{transform:translateY(-2px);border-color:#2563eb;outline:none}
-    .component-tile img{width:100%;height:88px;object-fit:contain;object-position:center;border-radius:9px;display:block;background:#fff}
-    .component-name{min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;margin:8px auto 2px;max-width:760px;padding:9px 14px;border-radius:12px;background:#eef6ff;color:#123b78;font-weight:800}
-    .image-note{font-size:13px;color:#5b677a;text-align:center;margin:4px 0 8px}
-    @media(max-width:760px){.component-strip{grid-template-columns:repeat(3,1fr)}.component-tile img{height:72px}}
-    .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
-    .choice-grid label{background:#f7f9fc;border:1px solid #e3e9f2;border-radius:10px;padding:10px 12px}
-    .feedback{margin-top:10px;font-size:14px;font-weight:700}
-    .quiz-result{margin-top:16px}
-    select.quiz-select{width:100%;max-width:420px;padding:10px;border:1px solid #dbe3ee;border-radius:10px;background:#fff}
-    .tip{background:#eef6ff;border-left:4px solid #2563eb;padding:12px 14px;border-radius:10px;margin:0 0 16px}
-
-    /* Exercice glisser-déposer : périphériques */
-    .dnd-exercise{margin-top:34px;background:#fff;border:1px solid #dbe3ee;border-radius:20px;padding:20px;box-shadow:0 10px 28px rgba(31,73,125,.08)}
-    .dnd-head h2{margin:4px 0 8px;color:#123b78}.dnd-help{background:#eef6ff;border-left:4px solid #2563eb;padding:12px 14px;border-radius:10px;margin:12px 0 16px}
-    .device-bank{display:grid;grid-template-columns:repeat(5,minmax(110px,1fr));gap:10px;margin:14px 0 18px}
-    .device-card{border:2px solid #dbe7f5;border-radius:14px;background:#fff;padding:8px;cursor:grab;text-align:center;touch-action:manipulation;user-select:none;transition:.18s;min-width:0}
-    .device-card:hover,.device-card.selected{border-color:#2563eb;box-shadow:0 5px 15px rgba(37,99,235,.18);transform:translateY(-2px)}
-    .device-card img{width:100%;height:92px;object-fit:contain;border-radius:9px;background:#f8fafc;pointer-events:none}.device-card strong{display:block;margin-top:6px;color:#183b6b;font-size:14px}
-    .drop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.drop-zone{min-height:190px;border:2px dashed #9bb9df;border-radius:16px;padding:10px;background:#f8fbff;transition:.18s}.drop-zone.dragover{background:#eaf4ff;border-color:#2563eb}
-    .drop-zone h3{text-align:center;margin:2px 0 10px;color:#123b78;font-size:17px}.drop-items{display:grid;grid-template-columns:repeat(2,minmax(80px,1fr));gap:7px;min-height:120px}
-    .drop-items .device-card{padding:5px}.drop-items .device-card img{height:65px}.drop-items .device-card strong{font-size:12px}
-    .device-card.correct{border-color:#16a34a;background:#ecfdf3}.device-card.wrong{border-color:#dc2626;background:#fff1f2}
-    .dnd-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}.dnd-score{font-weight:900;font-size:20px;color:#123b78;margin-left:auto}.dnd-message{width:100%;font-weight:700;margin-top:4px}
-    @media(max-width:760px){.device-bank{grid-template-columns:repeat(2,1fr)}.drop-grid{grid-template-columns:1fr}.drop-zone{min-height:140px}.drop-items{grid-template-columns:repeat(3,1fr)}.device-card img{height:78px}.dnd-score{margin-left:0;width:100%}}
-  </style>
+  
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a>
-  <a class="back-link" href="index.html">← Accueil</a>
+  <div class="topbar-actions"><a class="back-link" href="index.html">← Accueil</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Basculer le mode sombre" aria-pressed="false">🌙</button></div>
 </header>
 <nav class="site-nav" aria-label="Navigation principale">
   <div class="nav-inner">
@@ -52,12 +28,25 @@
   </div>
 </nav>
 
-<main class="container page">
+<main id="contenu" class="container page">
   <div class="page-heading">
     <p class="eyebrow">📝 Exercices interactifs</p>
-    <h1>Entraînement — Généralités informatiques</h1>
+    <h1>Unité 1 — Système informatique</h1>
     <p>20 activités variées : choix, vrai/faux, images et identification des composants de l’unité centrale.</p>
   </div>
+  <section class="exercise-units" aria-label="Choix de l'unité">
+    <a class="exercise-unit-card active" href="exercises.html">
+      <span class="unit-number">01</span>
+      <span><strong>Unité 1 — Système informatique</strong><small>Exercices existants</small></span>
+      <span>→</span>
+    </a>
+    <a class="exercise-unit-card" href="network-exercises.html">
+      <span class="unit-number">02</span>
+      <span><strong>Unité 2 — Réseau informatique</strong><small>QCM, Vrai/Faux, association, classification et bilan</small></span>
+      <span>→</span>
+    </a>
+  </section>
+
   <div class="tip">💡 Observe bien les images avant de répondre. À la fin, clique sur <strong>Corriger</strong> pour obtenir ta note.</div>
 
   <form id="quiz" class="quiz">
@@ -132,7 +121,7 @@
 
     <button class="button primary" type="submit">✓ Corriger mes réponses</button>
     <button class="button secondary" type="button" id="resetQuiz">↻ Recommencer</button>
-    <div id="quizResult" class="quiz-result" hidden></div>
+    <div id="quizResult" class="quiz-result" hidden aria-live="polite"></div>
   </form>
 
   <section class="dnd-exercise" id="peripheriquesDnd">
@@ -168,7 +157,7 @@
   </section>
 </main>
 <footer class="footer">© 2026 — Espace Informatique</footer>
-<script src="js/app.js?v=17"></script>
+<script src="js/app.js?v=19"></script>
 
 <script>
 (function(){
@@ -185,5 +174,6 @@
  document.getElementById('resetDnd').addEventListener('click',()=>{cards.forEach(c=>bank.appendChild(c));selectCard(null);clearMarks();});
 })();
 </script>
+<script src="js/enhancements.js" defer></script>
 </body>
 </html>

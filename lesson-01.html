@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#14213d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>💻</text></svg>">
+  <meta property="og:title" content="Leçon 01 — Généralités informatiques">
+  <meta property="og:description" content="Cours : information, ordinateur, périphériques, logiciels et système informatique.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
   <title>Leçon 01 — Généralités informatiques</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a>
-  <a class="back-link" href="lessons.html">← Les cours</a>
+  <div class="topbar-actions"><a class="back-link" href="lessons.html">← Les cours</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Basculer le mode sombre" aria-pressed="false">🌙</button></div>
 </header>
 <nav class="site-nav" aria-label="Navigation principale">
   <div class="nav-inner">
@@ -21,7 +28,7 @@
 </nav>
 
 
-<main class="container lesson-page">
+<main id="contenu" class="container lesson-page">
   <div class="lesson-header">
     <span class="tag">Leçon 01</span>
     <h1>Généralités informatiques</h1>
@@ -54,11 +61,22 @@
     </section>
   </article>
 
+  <section class="mental-map-section lesson-content">
+    <div class="lesson-image-intro">
+      <h2>🧠 Carte mentale</h2>
+    </div>
+    <a class="mental-map-image" href="assets/images/cours/carte-mentale-u1.png" target="_blank" rel="noopener" aria-label="Agrandir la carte mentale de l'unité 1">
+      <img src="assets/images/cours/carte-mentale-u1.png" alt="Carte mentale — Système informatique">
+      <span class="zoom-hint">↗ Agrandir</span>
+    </a>
+  </section>
+
   <div class="lesson-navigation">
     <a class="button secondary" href="lessons.html">← Tous les cours</a>
     <a class="button primary" href="exercises.html">Faire les exercices →</a>
   </div>
 </main>
 <footer class="footer">© 2026 — Espace Informatique</footer>
+<script src="js/enhancements.js" defer></script>
 </body>
 </html>

@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Les groupes et les exercices sont initialisés indépendamment.
   // Ainsi, l'absence du planning sur exercises.html ne bloque plus la correction du quiz.
 
-  const CLASSES = ['الثالثة 1','الثالثة 2','الثالثة 3','الثالثة 4','الثالثة 5','الثالثة 6','الثالثة 7','الثالثة 8','الثالثة 9','الثالثة 10','الثالثة 11'];
+  const CLASSES = ['Troisième 1','Troisième 2','Troisième 3','Troisième 4','Troisième 5','Troisième 6','Troisième 7','Troisième 8','Troisième 9','Troisième 10','Troisième 11'];
   const WEEKLY = {
-    1:['الثالثة 4','الثالثة 6'], 2:['الثالثة 7','الثالثة 5'], 3:['الثالثة 3','الثالثة 2'],
-    4:['الثالثة 10','الثالثة 1'], 5:['الثالثة 8'], 6:['الثالثة 11','الثالثة 9']
+    1:['Troisième 4','Troisième 6'], 2:['Troisième 7','Troisième 5'], 3:['Troisième 3','Troisième 2'],
+    4:['Troisième 10','Troisième 1'], 5:['Troisième 8'], 6:['Troisième 11','Troisième 9']
   };
   const DAY_NAMES = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
   const START_DATE = '2026-09-21'; // première semaine de rotation: Groupe 1
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     all.forEach(r => (grouped[r.date] ||= []).push(r));
     scheduleView.innerHTML = Object.entries(grouped).map(([date, rows]) => {
       const d = fromIso(date);
-      return `<div class="schedule-day"><div class="schedule-day-title"><span class="day">${date}</span><span>${DAY_NAMES[d.getDay()]}</span></div><div class="schedule-classes">${rows.map(r=>`<div class="schedule-class-card"><div class="class-title" dir="rtl">${r.classe}</div><div class="active-class-group ${r.manual?'manual-group':''}">✓ Groupe ${r.groupe}${r.manual?' · modification professeur':''}</div></div>`).join('')}</div></div>`;
+      return `<div class="schedule-day"><div class="schedule-day-title"><span class="day">${date}</span><span>${DAY_NAMES[d.getDay()]}</span></div><div class="schedule-classes">${rows.map(r=>`<div class="schedule-class-card"><div class="class-title" >${r.classe}</div><div class="active-class-group ${r.manual?'manual-group':''}">✓ Groupe ${r.groupe}${r.manual?' · modification professeur':''}</div></div>`).join('')}</div></div>`;
     }).join('') || '<div class="empty">Aucune séance à afficher.</div>';
 
   }

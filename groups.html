@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#14213d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>💻</text></svg>">
+  <meta property="og:title" content="Les groupes — Informatique">
+  <meta property="og:description" content="Planning hebdomadaire des groupes d'informatique, mis à jour automatiquement.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
   <title>Les groupes — Informatique</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a>
-  <a class="back-link" href="index.html">← Accueil</a>
+  <div class="topbar-actions"><a class="back-link" href="index.html">← Accueil</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Basculer le mode sombre" aria-pressed="false">🌙</button></div>
 </header>
 <nav class="site-nav" aria-label="Navigation principale">
   <div class="nav-inner">
@@ -21,13 +28,13 @@
 </nav>
 
 
-<main class="container groups-page">
+<main id="contenu" class="container groups-page">
   <div class="page-heading">
     <p class="eyebrow">👥 Groupes</p>
     <h1>Programme des groupes</h1>
   </div>
 
-  <div id="todayBanner" class="today-banner"></div>
+  <div id="todayBanner" class="today-banner" aria-live="polite"></div>
 
   <section class="schedule-card">
     <div class="schedule-header">
@@ -42,6 +49,7 @@
 </main>
 
 <footer class="footer">© 2026 — Espace Informatique</footer>
-<script src="js/app.js?v=17"></script>
+<script src="js/app.js?v=19"></script>
+<script src="js/enhancements.js" defer></script>
 </body>
 </html>
