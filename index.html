@@ -3,134 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#14213d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>💻</text></svg>">
+  <meta property="og:title" content="Informatique — Espace pédagogique">
+  <meta property="og:description" content="Plateforme pédagogique d'informatique : cours, exercices interactifs et planning des groupes.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
   <title>Informatique — Espace pédagogique</title>
   <meta name="description" content="Plateforme pédagogique d'informatique : cours, exercices et groupes.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="topbar modern-home-header">
-    <div class="header-inner">
-      <a class="brand brand-light" href="index.html" aria-label="Accueil">
-        <span class="brand-mark" aria-hidden="true">⌁</span>
-        <span>Informatique<small>Espace pédagogique</small></span>
-      </a>
-      <nav class="site-nav home-nav" aria-label="Navigation principale">
-        <a href="index.html" aria-current="page">Accueil</a>
-        <a href="lessons.html">Cours</a>
-        <a href="exercises.html">Exercices</a>
-        <a href="groups.html">Groupes</a>
-      </nav>
-    </div>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">💻</span>
+      <span>Informatique</span>
+    </a>
+    <div class="topbar-actions"><span class="school-label">Espace pédagogique</span><button id="themeToggle" class="theme-toggle" type="button" aria-label="Basculer le mode sombre" aria-pressed="false">🌙</button></div>
   </header>
+<nav class="site-nav" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="index.html"><span aria-hidden="true">⌂</span> Accueil</a>
+    <a href="lessons.html"><span aria-hidden="true">▤</span> Cours</a>
+    <a href="exercises.html"><span aria-hidden="true">✎</span> Exercices</a>
+    <a href="groups.html"><span aria-hidden="true">♧</span> Groupes</a>
+  </div>
+</nav>
 
-<!-- إعلان ثابت في سطرين مع لمبة حمراء وامضة -->
-<div style="background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%); border: 3px solid #e53e3e; border-radius: 12px; padding: 20px 25px; margin: 20px auto; max-width: 950px; box-shadow: 0 6px 16px rgba(229, 62, 62, 0.2); font-family: 'Cairo', 'Tajawal', sans-serif; direction: rtl; text-align: right;">
-    
-    <!-- العنوان مع المصباح الوامض -->
-    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; border-bottom: 2px dashed #feb2b2; padding-bottom: 12px;">
-        <!-- المصباح الوامض (وميض خطر مثل سيارة الإسعاف) -->
-        <span class="blinking-light" style="font-size: 32px;">🚨</span>
-        <h2 style="color: #c53030; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px;">
-            <span>إخبــــــــــــار هـــــــــــــام</span>
-            <span style="background-color: #e53e3e; color: white; font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: bold;">مستعجل</span>
-        </h2>
-    </div>
 
-    <!-- نص الإعلان مقسم إلى سطرين وبخط كبير وبارز ومضغوط -->
-    <div style="color: #1f2937; font-size: 19px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.8;">
-        <!-- السطر الأول -->
-        <div style="margin-bottom: 8px;">
-            📌 ابتداء من يوم الإثنين 12 أكتوبر سيعود جميع التلاميذ لأقسامهم الأصلية و يتعين ما يلي :
-        </div>
-        <!-- السطر الثاني -->
-        <div style="color: #9b2c2c;">
-            ⚡ حضور الفوج الثاني من رقم 23 إلى آخر رقم باللائحة ، ينضاف لهم تلاميذ الفوج الأول الذين لم ينجزوا الدرس الثاني le réseau informatique.
-        </div>
-    </div>
-
-</div>
-
-<!-- تصميم تأثير الوميض -->
-<style>
-@keyframes ambulanceFlash {
-    0% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.1; transform: scale(1.15); }
-    100% { opacity: 1; transform: scale(1); }
-}
-
-.blinking-light {
-    animation: ambulanceFlash 0.8s infinite ease-in-out;
-}
-</style>
-
-  <main class="home-page">
-    <section class="home-hero">
-      <div class="home-hero-inner container">
-        <div class="hero-copy">
-          <p class="hero-kicker">ESPACE PÉDAGOGIQUE</p>
-          <h1>Apprendre l'informatique<br><span>simplement et efficacement</span></h1>
-          <p class="hero-lead">Cours illustrés, exercices corrigés et travail en groupe pour progresser à votre rythme.</p>
-          <div class="hero-buttons">
-            <a class="hero-btn primary" href="lessons.html">Commencer maintenant <span>→</span></a>
-            <a class="hero-btn secondary" href="lessons.html">Découvrir les cours</a>
-          </div>
-          <div class="hero-tags" aria-label="Points forts">
-            <span>✓ Cours illustrés</span>
-            <span>✓ Exercices corrigés</span>
-            <span>✓ Travail en groupe</span>
-          </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="code-window">
-            <div class="window-bar"><i></i><i></i><i></i></div>
-            <div class="code-lines">
-              <b>&lt;/&gt;</b><br>
-              <span>informatique</span><br>
-              <em>cours();</em><br>
-              <em>exercices();</em><br>
-              <em>progresser();</em>
-            </div>
-          </div>
-          <div class="visual-orbit orbit-one">{ }</div>
-          <div class="visual-orbit orbit-two">&lt;/&gt;</div>
-          <div class="visual-node node-one">⚙</div>
-          <div class="visual-node node-two">▦</div>
-        </div>
+  <main id="contenu" class="container home">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Bienvenue</p>
+        <h1>Apprendre l'informatique<br><span>simplement et efficacement</span></h1>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🎓</div>
+        <strong>11 classes</strong>
+        <span>Groupe 1 · Groupe 2</span>
       </div>
     </section>
 
-    <section class="container home-cards" aria-label="Accès rapide">
-      <a class="home-card card-courses" href="lessons.html">
-        <span class="home-card-icon">▤</span>
-        <span class="home-card-title">Cours</span>
-        <span class="home-card-desc">Découvrez les cours d'informatique</span>
-        <span class="home-card-chip">Cours illustrés</span>
+    <section class="main-actions" aria-label="Navigation principale">
+      <a class="action-card courses" href="lessons.html">
+        <span class="action-icon">📚</span>
+        <span class="action-title">Les cours</span>
+        <span class="action-desc">Consulter les leçons</span>
+        <span class="arrow">→</span>
       </a>
-      <a class="home-card card-exercises" href="exercises.html">
-        <span class="home-card-icon">☷</span>
-        <span class="home-card-title">Exercices</span>
-        <span class="home-card-desc">Testez vos connaissances et consultez les corrections</span>
-        <span class="home-card-chip">Quiz &amp; corrections</span>
+
+      <a class="action-card exercises" href="exercises.html">
+        <span class="action-icon">📝</span>
+        <span class="action-title">Les exercices</span>
+        <span class="action-desc">S'entraîner et vérifier ses réponses</span>
+        <span class="arrow">→</span>
       </a>
-      <a class="home-card card-groups" href="groups.html">
-        <span class="home-card-icon">♧</span>
-        <span class="home-card-title">Groupes</span>
-        <span class="home-card-desc">Consultez votre groupe et le programme</span>
-        <span class="home-card-chip">Travail en groupe</span>
+
+      <a class="action-card groups" href="groups.html">
+        <span class="action-icon">👥</span>
+        <span class="action-title">Les groupes</span>
+        <span class="action-desc">Voir le groupe qui a cours</span>
+        <span class="arrow">→</span>
       </a>
     </section>
 
-    <section class="container today-box home-today">
+    <section class="today-box">
       <div>
         <p class="eyebrow">Aujourd'hui</p>
         <h2 id="todayTitle">Programme du jour</h2>
       </div>
-      <div id="todaySchedule" class="today-result"></div>
+      <div id="todaySchedule" class="today-result" aria-live="polite"></div>
     </section>
   </main>
 
   <footer class="footer">© 2026 — Espace Informatique</footer>
   <script src="js/app.js"></script>
-<script src="js/back-to-top.js"></script>
+<script src="js/enhancements.js" defer></script>
 </body>
 </html>

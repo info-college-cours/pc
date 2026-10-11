@@ -3,54 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leçon 02 — Réseau informatique</title>
+  <meta name="theme-color" content="#14213d">
+  <meta property="og:title" content="Unité 2 — Réseau informatique">
+  <meta property="og:description" content="Cours de réseau informatique pour les élèves de 3AC.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <title>Unité 2 — Réseau informatique</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-icon">💻</span><span>Informatique</span></a>
-  <a class="back-link" href="lessons.html">← Les cours</a>
+  <div class="topbar-actions"><a class="back-link" href="lessons.html">← Les cours</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Basculer le mode sombre" aria-pressed="false">🌙</button></div>
 </header>
 <nav class="site-nav" aria-label="Navigation principale">
   <div class="nav-inner">
     <a href="index.html"><span aria-hidden="true">⌂</span> Accueil</a>
-    <a href="lessons.html" aria-current="page"><span aria-hidden="true">▤</span> Cours</a>
+    <a href="lessons.html"><span aria-hidden="true">▤</span> Cours</a>
     <a href="exercises.html"><span aria-hidden="true">✎</span> Exercices</a>
     <a href="groups.html"><span aria-hidden="true">♧</span> Groupes</a>
   </div>
 </nav>
-<main class="container lesson-page">
+
+<main id="contenu" class="container lesson-page">
   <div class="lesson-header">
-    <span class="tag">Leçon 02</span>
+    <span class="tag">Unité 2</span>
     <h1>Réseau informatique</h1>
-    <p>Définition, configuration matérielle et typologie des réseaux.</p>
+    <p>Support du cours sous forme d'images, conformément au document préparé.</p>
   </div>
+
   <article class="lesson-content lesson-images-only">
     <section class="source-images">
       <div class="lesson-image-intro">
         <h2>📖 Support du cours</h2>
-        <p>Le cours est présenté sous forme d’images. Clique sur une page pour l’agrandir.</p>
+        <p>Consulte les pages du cours puis la carte mentale de l'unité.</p>
       </div>
-<div class="lesson-pages">
-        <a class="lesson-page-image" href="assets/images/reseau/reseau-01.png" target="_blank" rel="noopener" aria-label="Agrandir la page 1 du cours">
+      <div class="lesson-pages">
+        <a class="lesson-page-image" href="assets/images/cours/resume-reseau-1.png" target="_blank" rel="noopener" aria-label="Agrandir la page 1 du cours">
           <span class="page-label">Page 1</span>
-          <img src="assets/images/reseau/reseau-01.png" alt="Réseau informatique — page 1" loading="eager">
+          <img src="assets/images/cours/resume-reseau-1.png" alt="Résumé du cours Réseau informatique — page 1">
           <span class="zoom-hint">↗ Agrandir</span>
         </a>
-        <a class="lesson-page-image" href="assets/images/reseau/reseau-02.png" target="_blank" rel="noopener" aria-label="Agrandir la page 2 du cours">
+        <a class="lesson-page-image" href="assets/images/cours/resume-reseau-2.png" target="_blank" rel="noopener" aria-label="Agrandir la page 2 du cours">
           <span class="page-label">Page 2</span>
-          <img src="assets/images/reseau/reseau-02.png" alt="Réseau informatique — page 2" loading="lazy">
+          <img src="assets/images/cours/resume-reseau-2.png" alt="Résumé du cours Réseau informatique — page 2">
           <span class="zoom-hint">↗ Agrandir</span>
         </a>
       </div>
     </section>
+
+    <section class="mental-map-section">
+      <div class="lesson-image-intro">
+        <h2>🧠 Carte mentale</h2>
+      </div>
+      <a class="mental-map-image" href="assets/images/cours/carte-mentale-u2.png" target="_blank" rel="noopener" aria-label="Agrandir la carte mentale de l'unité 2">
+        <img src="assets/images/cours/carte-mentale-u2.png" alt="Carte mentale — Réseau informatique">
+        <span class="zoom-hint">↗ Agrandir</span>
+      </a>
+    </section>
   </article>
+
   <div class="lesson-navigation">
-    <a class="button secondary" href="lessons.html">← Tous les cours</a>
-    <a class="button primary" href="exercise-network.html">Faire les exercices →</a>
+    <a class="button secondary" href="lesson-01.html">← Unité 1</a>
+    <a class="button primary" href="network-exercises.html">Exercices de l'unité 2 →</a>
   </div>
 </main>
 <footer class="footer">© 2026 — Espace Informatique</footer>
-<script src="js/back-to-top.js"></script>
+<script src="js/enhancements.js" defer></script>
 </body>
 </html>
